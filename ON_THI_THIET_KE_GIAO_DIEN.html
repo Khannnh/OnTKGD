@@ -1,0 +1,4240 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 TÀI LIỆU ÔN THI CẤP TỐC - THIẾT KẾ GIAO DIỆN NGƯỜI DÙNG</title>
+  <meta name="description" content="Tài liệu ôn thi cấp tốc học phần Thiết kế giao diện người dùng - PTIT. Ôn 200 câu trong 4 ngày.">
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons for beautiful UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --font-title: 'Outfit', 'Inter', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      
+      /* Dark Theme (Default) */
+      --bg-app: #0b0f19;
+      --bg-sidebar: #111827;
+      --bg-card: #1f2937;
+      --bg-active: #374151;
+      
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --text-inverse: #111827;
+      
+      --border-color: #374151;
+      --border-light: #4b5563;
+      
+      --primary: #6366f1;
+      --primary-glow: rgba(99, 102, 241, 0.15);
+      --primary-hover: #4f46e5;
+      --accent: #06b6d4;
+      
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.15);
+      --success-border: rgba(16, 185, 129, 0.3);
+      --success-text: #34d399;
+      
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.15);
+      --warning-border: rgba(245, 158, 11, 0.3);
+      --warning-text: #fbbf24;
+      
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+      --danger-border: rgba(239, 68, 68, 0.3);
+      --danger-text: #f87171;
+      
+      --info: #3b82f6;
+      --info-bg: rgba(59, 130, 246, 0.15);
+      --info-border: rgba(59, 130, 246, 0.3);
+      --info-text: #60a5fa;
+
+      --ans-hidden-bg: #374151;
+      --ans-hidden-border: #4b5563;
+      --ans-shown-bg: #10b981;
+      --ans-shown-text: #ffffff;
+      
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+      --scrollbar-thumb: #374151;
+      --scrollbar-track: #111827;
+      
+      --row-learned-bg: rgba(16, 185, 129, 0.08);
+      --sidebar-width: 300px;
+    }
+
+    [data-theme="light"] {
+      /* Light Theme */
+      --bg-app: #f8fafc;
+      --bg-sidebar: #0f172a;
+      --bg-card: #ffffff;
+      --bg-active: #f1f5f9;
+      
+      --text-main: #334155;
+      --text-muted: #64748b;
+      --text-inverse: #ffffff;
+      
+      --border-color: #e2e8f0;
+      --border-light: #cbd5e1;
+      
+      --primary: #4f46e5;
+      --primary-glow: rgba(79, 70, 229, 0.1);
+      --primary-hover: #4338ca;
+      --accent: #0ea5e9;
+      
+      --success: #059669;
+      --success-bg: rgba(5, 150, 105, 0.08);
+      --success-border: rgba(5, 150, 105, 0.2);
+      --success-text: #047857;
+      
+      --warning: #d97706;
+      --warning-bg: rgba(217, 119, 6, 0.08);
+      --warning-border: rgba(217, 119, 6, 0.2);
+      --warning-text: #b45309;
+      
+      --danger: #dc2626;
+      --danger-bg: rgba(220, 38, 38, 0.08);
+      --danger-border: rgba(220, 38, 38, 0.2);
+      --danger-text: #b91c1c;
+      
+      --info: #2563eb;
+      --info-bg: rgba(37, 99, 235, 0.08);
+      --info-border: rgba(37, 99, 235, 0.2);
+      --info-text: #1d4ed8;
+
+      --ans-hidden-bg: #e2e8f0;
+      --ans-hidden-border: #cbd5e1;
+      --ans-shown-bg: #059669;
+      --ans-shown-text: #ffffff;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+      --scrollbar-thumb: #cbd5e1;
+      --scrollbar-track: #f1f5f9;
+      
+      --row-learned-bg: rgba(16, 185, 129, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--bg-sidebar);
+      color: #f3f4f6;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border-color);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sidebar-title {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .progress-container {
+      margin-top: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar-bg {
+      background: rgba(255, 255, 255, 0.1);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      background: linear-gradient(90deg, #10b981, #059669);
+      height: 100%;
+      width: 0%;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+    }
+
+    .sidebar-menu {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar-menu::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .menu-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 12px 8px 6px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      color: #9ca3af;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .menu-item:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+    }
+
+    .menu-item.active {
+      background-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Content Area */
+    .main-wrapper {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .header-bar {
+      height: 70px;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      display: none; /* Mobile only or scroll overlay */
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .content-container {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 48px 48px 80px;
+    }
+
+    /* Typography inside content */
+    h1 {
+      font-family: var(--font-title);
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.25;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 48px;
+      margin-bottom: 20px;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3 {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+
+    h4 {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-main);
+      font-size: 0.975rem;
+    }
+
+    ul, ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      font-size: 0.975rem;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border-color);
+      margin: 40px 0;
+    }
+
+    /* Alerts (Github style) */
+    .alert {
+      padding: 16px 20px;
+      border-left: 4px solid transparent;
+      border-radius: 8px;
+      margin: 24px 0;
+      background-color: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .alert-title {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .alert-content {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .alert-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .alert.alert-tip {
+      border-color: var(--success);
+      background-color: var(--success-bg);
+      border: 1px solid var(--success-border);
+      border-left-width: 4px;
+    }
+    .alert.alert-tip .alert-title {
+      color: var(--success-text);
+    }
+
+    .alert.alert-important {
+      border-color: var(--primary);
+      background-color: var(--primary-glow);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-left-width: 4px;
+    }
+    .alert.alert-important .alert-title {
+      color: var(--primary);
+    }
+
+    .alert.alert-warning {
+      border-color: var(--warning);
+      background-color: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left-width: 4px;
+    }
+    .alert.alert-warning .alert-title {
+      color: var(--warning-text);
+    }
+
+    .alert.alert-caution {
+      border-color: var(--danger);
+      background-color: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      border-left-width: 4px;
+    }
+    .alert.alert-caution .alert-title {
+      color: var(--danger-text);
+    }
+
+    /* Card Wrapper */
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Interactive Table Wrapper for Answer Table */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin: 24px 0;
+      background-color: var(--bg-card);
+      box-shadow: var(--shadow-md);
+    }
+
+    .table-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background: rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid var(--border-color);
+      gap: 12px;
+    }
+
+    .table-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--bg-active);
+      border-color: var(--border-light);
+    }
+
+    .btn.btn-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn.btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn.btn-success {
+      background-color: var(--success);
+      border-color: var(--success);
+      color: #ffffff;
+    }
+
+    /* Answers Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.925rem;
+    }
+
+    th {
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 12px 16px;
+      font-weight: 600;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border-color);
+      user-select: none;
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+      transition: background-color 0.2s ease;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Row Hover and Learned State */
+    tr.learned {
+      background-color: var(--row-learned-bg) !important;
+    }
+
+    tr.learned td {
+      border-bottom-color: rgba(16, 185, 129, 0.15);
+    }
+
+    tbody tr:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+
+    /* Columns Width for Answer Sheet */
+    .col-check {
+      width: 50px;
+      text-align: center;
+    }
+    .col-num {
+      width: 70px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .col-ans {
+      width: 100px;
+      text-align: center;
+    }
+    .col-keyword {
+      font-weight: 500;
+    }
+    .col-image {
+      width: 150px;
+      text-align: center;
+    }
+    .visual-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+      text-decoration: none;
+    }
+    .visual-link:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .visual-thumb {
+      width: 120px;
+      height: 70px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Answer Badge (interactive button) */
+    .badge-ans {
+      display: inline-block;
+      width: 38px;
+      height: 38px;
+      line-height: 36px;
+      text-align: center;
+      border-radius: 50%;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid var(--ans-hidden-border);
+      background-color: var(--ans-hidden-bg);
+      color: transparent; /* hidden */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-ans::before {
+      content: '?';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      line-height: 34px;
+      text-align: center;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: opacity 0.15s ease;
+    }
+
+    .badge-ans.shown {
+      background-color: var(--ans-shown-bg);
+      border-color: var(--ans-shown-bg);
+      color: var(--ans-shown-text);
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+      transform: scale(1.05);
+    }
+
+    .badge-ans.shown::before {
+      opacity: 0;
+    }
+
+    /* Checkbox Styling */
+    .custom-checkbox {
+      width: 20px;
+      height: 20px;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 2px solid var(--border-light);
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .custom-checkbox:checked {
+      background-color: var(--success);
+      border-color: var(--success);
+    }
+
+    .custom-checkbox:checked::after {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: white;
+      font-size: 0.65rem;
+    }
+
+    .custom-checkbox:hover {
+      border-color: var(--primary);
+    }
+
+    /* Inner Keyword Blurring */
+    .keyword-text {
+      transition: filter 0.2s ease, opacity 0.2s ease;
+    }
+
+    .keywords-blurred .keyword-text {
+      filter: blur(4px);
+      user-select: none;
+      opacity: 0.6;
+    }
+
+    .keywords-blurred .keyword-text:hover {
+      filter: none;
+      opacity: 1;
+    }
+
+    /* Theme toggle switch in footer */
+    .theme-toggle-btn {
+      background: none;
+      border: none;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 8px;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle-btn:hover {
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Grid for quick navigation to individual questions */
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .grid-q-btn {
+      padding: 8px 0;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .grid-q-btn:hover {
+      border-color: var(--primary);
+      background-color: var(--bg-active);
+    }
+
+    .grid-q-btn.learned {
+      background-color: var(--success-bg);
+      border-color: var(--success);
+      color: var(--success-text);
+    }
+
+    /* Header quick info */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(0,0,0,0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Quick Filter Section for Bảng đáp án nhanh */
+    .filter-wrapper {
+      margin-bottom: 16px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .filter-search-box {
+      flex: 1;
+      position: relative;
+    }
+
+    .filter-search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+    }
+
+    .filter-search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-glow);
+    }
+
+    .filter-search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Float Back-to-Top Button */
+    .btn-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: #ffffff;
+      border: none;
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      z-index: 99;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .btn-float.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .btn-float:hover {
+      background-color: var(--primary-hover);
+      transform: scale(1.05);
+    }
+
+    /* Responsive Mobile Styles */
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+      }
+
+      .header-bar {
+        display: flex;
+      }
+
+      .content-container {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-banner {
+        padding: 24px;
+      }
+      
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .table-controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .btn-group {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .col-keyword {
+        min-width: 180px;
+      }
+    }
+
+    /* Table styles for normal content markdown tables */
+    .content-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    .content-table th {
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .content-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .content-table tr:hover {
+      background: rgba(0, 0, 0, 0.01);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Component -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Thiết kế Giao diện</span>
+      </div>
+      <div class="sidebar-subtitle">PTIT • Ôn Thi Cấp Tốc</div>
+      
+      <!-- Progress Bar inside Sidebar -->
+      <div class="progress-container">
+        <div class="progress-labels">
+          <span>Tiến trình ôn thi</span>
+          <span id="progress-percent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+        <div style="font-size: 0.7rem; color: #9ca3af; margin-top: 6px; text-align: center;">
+          Đã thuộc <strong id="progress-count" style="color: #34d399;">0</strong> / 200 câu
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-menu">
+      <div class="menu-header">Bảng đáp án</div>
+      <a href="#quick-answers" class="menu-item active" data-sec="quick-answers">
+        <i class="fa-solid fa-list-check"></i>
+        <span>📋 Bảng đáp án nhanh</span>
+      </a>
+
+      <div class="menu-header">Chủ đề lý thuyết</div>
+      <a href="#topic-1" class="menu-item" data-sec="topic-1"><i class="fa-solid fa-scale-balanced"></i><span>🎯 1. Định luật UX Laws</span></a>
+      <a href="#topic-2" class="menu-item" data-sec="topic-2"><i class="fa-solid fa-font"></i><span>🎨 2. Typography</span></a>
+      <a href="#topic-3" class="menu-item" data-sec="topic-3"><i class="fa-solid fa-palette"></i><span>🌈 3. Màu sắc & Visual</span></a>
+      <a href="#topic-4" class="menu-item" data-sec="topic-4"><i class="fa-solid fa-table-cells-large"></i><span>📐 4. Layout & Patterns</span></a>
+      <a href="#topic-5" class="menu-item" data-sec="topic-5"><i class="fa-solid fa-puzzle-piece"></i><span>🧩 5. UI Components</span></a>
+      <a href="#topic-6" class="menu-item" data-sec="topic-6"><i class="fa-solid fa-bezier-curve"></i><span>🔧 6. Figma Tools</span></a>
+      <a href="#topic-7" class="menu-item" data-sec="topic-7"><i class="fa-solid fa-magnifying-glass-chart"></i><span>🔬 7. UX Research</span></a>
+      <a href="#topic-8" class="menu-item" data-sec="topic-8"><i class="fa-solid fa-universal-access"></i><span>♿ 8. Accessibility</span></a>
+      <a href="#topic-9" class="menu-item" data-sec="topic-9"><i class="fa-solid fa-mobile-screen"></i><span>📱 9. Mobile Design</span></a>
+      <a href="#topic-10" class="menu-item" data-sec="topic-10"><i class="fa-solid fa-file-code"></i><span>📂 10. File & Kỹ thuật</span></a>
+      <a href="#topic-11" class="menu-item" data-sec="topic-11"><i class="fa-solid fa-arrows-spin"></i><span>🏗️ 11. Quy trình thiết kế</span></a>
+      <a href="#topic-12" class="menu-item" data-sec="topic-12"><i class="fa-solid fa-eye"></i><span>📊 12. Heuristics Nielsen</span></a>
+
+      <div class="menu-header">Chiến lược & Lộ trình</div>
+      <a href="#strategy" class="menu-item" data-sec="strategy">
+        <i class="fa-solid fa-compass"></i>
+        <span>🧠 Chiến lược trắc nghiệm</span>
+      </a>
+      <a href="#study-plan" class="menu-item" data-sec="study-plan">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>📅 Kế hoạch 4 ngày</span>
+      </a>
+      <a href="#statistics" class="menu-item" data-sec="statistics">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>📊 Thống kê bộ đề</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span style="font-size: 0.75rem; color: #6b7280;">Theme</span>
+      <button class="theme-toggle-btn" id="theme-toggle" title="Chuyển chế độ sáng/tối">
+        <i class="fa-solid fa-sun" id="theme-icon-light" style="display: none;"></i>
+        <i class="fa-solid fa-moon" id="theme-icon-dark"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Mobile Overlay for Sidebar -->
+  <div style="display: none;" id="sidebar-overlay"></div>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <!-- Mobile header bar -->
+    <header class="header-bar">
+      <button id="mobile-menu-btn" style="background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer;">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div style="font-family: var(--font-title); font-weight: 700; color: var(--primary);">Ôn thi Thiết kế Giao diện</div>
+      <button class="theme-toggle-btn" id="mobile-theme-toggle" style="color: var(--text-main);">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </header>
+
+    <main class="content-container">
+      
+      <!-- Hero Banner -->
+      <section class="hero-banner">
+        <div class="hero-content">
+          <h1>📚 TÀI LIỆU ÔN THI CẤP TỐC<br>THIẾT KẾ GIAO DIỆN NGƯỜI DÙNG</h1>
+          <p style="margin-top: 12px; font-size: 1.1rem; color: var(--text-main);">Học phần: Thiết kế giao diện người dùng - PTIT</p>
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <i class="fa-solid fa-bullseye"></i>
+              <span>Mục tiêu: Ôn 200 câu / 4 ngày</span>
+            </div>
+            <div class="hero-meta-item">
+              <i class="fa-solid fa-calendar"></i>
+              <span>Ngày thi: 9/6/2026</span>
+            </div>
+            <div class="hero-meta-item">
+              <i class="fa-solid fa-bolt" style="color: #fbbf24;"></i>
+              <span>Chế độ tương tác ôn thi đã bật</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Bảng đáp án nhanh -->
+      <section id="quick-answers">
+        <h2 style="margin-top: 0;"><i class="fa-solid fa-list-check"></i> 📋 BẢNG ĐÁP ÁN NHANH TOÀN BỘ 200 CÂU</h2>
+        
+        <div class="alert alert-tip">
+          <div class="alert-title">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>Mẹo sử dụng bảng tương tác:</span>
+          </div>
+          <div class="alert-content">
+            <ul>
+              <li><strong>Tự kiểm tra:</strong> Che cột đáp án bằng cách dùng nút "Che tất cả". Nhấp trực tiếp vào ô tròn đáp án để mở/ẩn đáp án câu đó.</li>
+              <li><strong>Đánh dấu câu đã thuộc:</strong> Tích chọn ở cột đầu tiên để chuyển hàng sang màu xanh lá cây, giúp bạn tập trung vào những câu còn lại. Tiến độ sẽ được tự động lưu.</li>
+              <li><strong>Che từ khóa gợi nhớ:</strong> Bạn có thể ẩn mờ từ khóa để rèn luyện trí nhớ sâu hơn.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 20px; margin-bottom: 24px;">
+          <div class="filter-wrapper">
+            <div class="filter-search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="answer-search" placeholder="Tìm kiếm theo số câu (vd: 25) hoặc từ khóa (vd: Hick)...">
+            </div>
+            <button class="btn" id="btn-show-unlearned" title="Chỉ hiện những câu chưa thuộc">
+              <i class="fa-solid fa-filter"></i> <span>Chưa thuộc</span>
+            </button>
+          </div>
+          <div class="question-grid-summary" style="font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+            <span>Gợi ý: Click vào số câu bên dưới để cuộn nhanh đến câu đó trong bảng.</span>
+            <span id="search-result-count">Hiển thị 200 câu</span>
+          </div>
+        </div>
+
+        <!-- BẢNG CÂU 1-50 -->
+        <div class="table-container">
+          <div class="table-controls">
+            <div class="table-title">
+              <i class="fa-solid fa-list-numeric"></i>
+              <span>Câu 1 - 50</span>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-show-all-section" data-start="1" data-end="50">
+                <i class="fa-solid fa-eye"></i> Hiện đáp án
+              </button>
+              <button class="btn btn-hide-all-section" data-start="1" data-end="50">
+                <i class="fa-solid fa-eye-slash"></i> Che đáp án
+              </button>
+            </div>
+          </div>
+          <table id="table-1-50">
+            <thead>
+              <tr>
+                <th class="col-check"><i class="fa-solid fa-check-double" title="Đã thuộc"></i></th>
+                <th class="col-num">Câu</th>
+                <th class="col-ans">Đáp án</th>
+                <th class="col-keyword">Từ khóa gợi nhớ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data row-by-row -->
+              <tr id="qrow-1">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="1"></td>
+                <td class="col-num">1</td>
+                <td class="col-ans"><span class="badge-ans" data-id="1">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Affordance = gợi ý trực quan cách tương tác</span></td>
+              </tr>
+              <tr id="qrow-2">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="2"></td>
+                <td class="col-num">2</td>
+                <td class="col-ans"><span class="badge-ans" data-id="2">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Micro-interactions = hiệu ứng nhỏ, phản hồi tác vụ</span></td>
+              </tr>
+              <tr id="qrow-3">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="3"></td>
+                <td class="col-num">3</td>
+                <td class="col-ans"><span class="badge-ans" data-id="3">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Visibility of system status = luôn thông báo trạng thái</span></td>
+              </tr>
+              <tr id="qrow-4">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="4"></td>
+                <td class="col-num">4</td>
+                <td class="col-ans"><span class="badge-ans" data-id="4">D</span></td>
+                <td class="col-keyword"><span class="keyword-text">Sans-serif = dễ đọc trên màn hình</span></td>
+              </tr>
+              <tr id="qrow-5">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="5"></td>
+                <td class="col-num">5</td>
+                <td class="col-ans"><span class="badge-ans" data-id="5">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">F-Pattern = trang nhiều chữ (blog, báo)</span></td>
+              </tr>
+              <tr id="qrow-6">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="6"></td>
+                <td class="col-num">6</td>
+                <td class="col-ans"><span class="badge-ans" data-id="6">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">CTA = kêu gọi hành động (Mua ngay, Đăng ký)</span></td>
+              </tr>
+              <tr id="qrow-7">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="7"></td>
+                <td class="col-num">7</td>
+                <td class="col-ans"><span class="badge-ans" data-id="7">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">White space KHÔNG chứa quảng cáo ẩn</span></td>
+              </tr>
+              <tr id="qrow-8">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="8"></td>
+                <td class="col-num">8</td>
+                <td class="col-ans"><span class="badge-ans" data-id="8">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Responsive = co giãn linh hoạt; Adaptive = bố cục cố định</span></td>
+              </tr>
+              <tr id="qrow-9">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="9"></td>
+                <td class="col-num">9</td>
+                <td class="col-ans"><span class="badge-ans" data-id="9">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">SVG = vector, sắc nét mọi độ phân giải</span></td>
+              </tr>
+              <tr id="qrow-10">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="10"></td>
+                <td class="col-num">10</td>
+                <td class="col-ans"><span class="badge-ans" data-id="10">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Dark Pattern = thủ thuật lừa người dùng</span></td>
+              </tr>
+              <tr id="qrow-11">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="11"></td>
+                <td class="col-num">11</td>
+                <td class="col-ans"><span class="badge-ans" data-id="11">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Breadcrumbs = đường dẫn vị trí hiện tại</span></td>
+              </tr>
+              <tr id="qrow-12">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="12"></td>
+                <td class="col-num">12</td>
+                <td class="col-ans"><span class="badge-ans" data-id="12">D</span></td>
+                <td class="col-keyword"><span class="keyword-text">sp = Scale-independent Pixels (Android)</span></td>
+              </tr>
+              <tr id="qrow-13">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="13"></td>
+                <td class="col-num">13</td>
+                <td class="col-ans"><span class="badge-ans" data-id="13">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Skeleton Loading = hình dung bố cục sắp tải</span></td>
+              </tr>
+              <tr id="qrow-14">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="14"></td>
+                <td class="col-num">14</td>
+                <td class="col-ans"><span class="badge-ans" data-id="14">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Hamburger menu = ẩn điều hướng, giảm khám phá</span></td>
+              </tr>
+              <tr id="qrow-15">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="15"></td>
+                <td class="col-num">15</td>
+                <td class="col-ans"><span class="badge-ans" data-id="15">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Tooltip = giải thích ngắn khi hover icon</span></td>
+              </tr>
+              <tr id="qrow-16">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="16"></td>
+                <td class="col-num">16</td>
+                <td class="col-ans"><span class="badge-ans" data-id="16">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">RGB = hệ màu cho thiết bị số</span></td>
+              </tr>
+              <tr id="qrow-17">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="17"></td>
+                <td class="col-num">17</td>
+                <td class="col-ans"><span class="badge-ans" data-id="17">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Fitts's Law = kích thước + khoảng cách</span></td>
+              </tr>
+              <tr id="qrow-18">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="18"></td>
+                <td class="col-num">18</td>
+                <td class="col-ans"><span class="badge-ans" data-id="18">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">User control = Undo/Redo</span></td>
+              </tr>
+              <tr id="qrow-19">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="19"></td>
+                <td class="col-num">19</td>
+                <td class="col-ans"><span class="badge-ans" data-id="19">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Card Sorting = nghiên cứu Information Architecture</span></td>
+              </tr>
+              <tr id="qrow-20">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="20"></td>
+                <td class="col-num">20</td>
+                <td class="col-ans"><span class="badge-ans" data-id="20">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Auto Layout = Frame tự co giãn theo nội dung</span></td>
+              </tr>
+              <tr id="qrow-21">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="21"></td>
+                <td class="col-num">21</td>
+                <td class="col-ans"><span class="badge-ans" data-id="21">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">F = Frame trong Figma</span></td>
+              </tr>
+              <tr id="qrow-22">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="22"></td>
+                <td class="col-num">22</td>
+                <td class="col-ans"><span class="badge-ans" data-id="22">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">iOS tap target = 44x44 pt</span></td>
+              </tr>
+              <tr id="qrow-23">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="23"></td>
+                <td class="col-num">23</td>
+                <td class="col-ans"><span class="badge-ans" data-id="23">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Material Design touch = 48x48 dp</span></td>
+              </tr>
+              <tr id="qrow-24">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="24"></td>
+                <td class="col-num">24</td>
+                <td class="col-ans"><span class="badge-ans" data-id="24">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Z-pattern = Landing page ít chữ, CTA nổi bật</span></td>
+              </tr>
+              <tr id="qrow-25">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="25"></td>
+                <td class="col-num">25</td>
+                <td class="col-ans"><span class="badge-ans" data-id="25">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Tab Bar = 3-5 mục</span></td>
+              </tr>
+              <tr id="qrow-26">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="26"></td>
+                <td class="col-num">26</td>
+                <td class="col-ans"><span class="badge-ans" data-id="26">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Line height = 140-160%</span></td>
+              </tr>
+              <tr id="qrow-27">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="27"></td>
+                <td class="col-num">27</td>
+                <td class="col-ans"><span class="badge-ans" data-id="27">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Variants = quản lý trạng thái Component</span></td>
+              </tr>
+              <tr id="qrow-28">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="28"></td>
+                <td class="col-num">28</td>
+                <td class="col-ans"><span class="badge-ans" data-id="28">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Hick's Law = giảm lựa chọn → quyết định nhanh</span></td>
+              </tr>
+              <tr id="qrow-29">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="29"></td>
+                <td class="col-num">29</td>
+                <td class="col-ans"><span class="badge-ans" data-id="29">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Empty State = hình minh họa + hướng dẫn hành động</span></td>
+              </tr>
+              <tr id="qrow-30">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="30"></td>
+                <td class="col-num">30</td>
+                <td class="col-ans"><span class="badge-ans" data-id="30">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">iOS = San Francisco, Android = Roboto</span></td>
+              </tr>
+              <tr id="qrow-31">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="31"></td>
+                <td class="col-num">31</td>
+                <td class="col-ans"><span class="badge-ans" data-id="31">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Splash Screen = màn hình logo khi mở app</span></td>
+              </tr>
+              <tr id="qrow-32">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="32"></td>
+                <td class="col-num">32</td>
+                <td class="col-ans"><span class="badge-ans" data-id="32">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">WCAG AA = tương phản 4.5:1</span></td>
+              </tr>
+              <tr id="qrow-33">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="33"></td>
+                <td class="col-num">33</td>
+                <td class="col-ans"><span class="badge-ans" data-id="33">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Danh sách dài = tái sử dụng Component + Infinite scroll</span></td>
+              </tr>
+              <tr id="qrow-34">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="34"></td>
+                <td class="col-num">34</td>
+                <td class="col-ans"><span class="badge-ans" data-id="34">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Hover = không có trên cảm ứng → đừng giấu thông tin</span></td>
+              </tr>
+              <tr id="qrow-35">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="35"></td>
+                <td class="col-num">35</td>
+                <td class="col-ans"><span class="badge-ans" data-id="35">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Mockup = high-fidelity; Wireframe = low-fidelity</span></td>
+              </tr>
+              <tr id="qrow-36">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="36"></td>
+                <td class="col-num">36</td>
+                <td class="col-ans"><span class="badge-ans" data-id="36">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Jakob's Law = người dùng muốn sản phẩm quen thuộc</span></td>
+              </tr>
+              <tr id="qrow-37">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="37"></td>
+                <td class="col-num">37</td>
+                <td class="col-ans"><span class="badge-ans" data-id="37">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Constraints = xác định phần tử co giãn khi resize</span></td>
+              </tr>
+              <tr id="qrow-38">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="38"></td>
+                <td class="col-num">38</td>
+                <td class="col-ans"><span class="badge-ans" data-id="38">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Stepper = tăng/giảm giá trị số</span></td>
+              </tr>
+              <tr id="qrow-39">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="39"></td>
+                <td class="col-num">39</td>
+                <td class="col-ans"><span class="badge-ans" data-id="39">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Mental Model = kỳ vọng của người dùng từ kinh nghiệm</span></td>
+              </tr>
+              <tr id="qrow-40">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="40"></td>
+                <td class="col-num">40</td>
+                <td class="col-ans"><span class="badge-ans" data-id="40">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Đỏ ≠ Success (xanh lá mới là Success)</span></td>
+              </tr>
+              <tr id="qrow-41">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="41"></td>
+                <td class="col-num">41</td>
+                <td class="col-ans"><span class="badge-ans" data-id="41">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">A/B Testing = so sánh 2 phiên bản giao diện</span></td>
+              </tr>
+              <tr id="qrow-42">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="42"></td>
+                <td class="col-num">42</td>
+                <td class="col-ans"><span class="badge-ans" data-id="42">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Pagination = trang tìm kiếm, e-commerce</span></td>
+              </tr>
+              <tr id="qrow-43">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="43"></td>
+                <td class="col-num">43</td>
+                <td class="col-ans"><span class="badge-ans" data-id="43">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Miller's Law = 7 ± 2 nhóm thông tin</span></td>
+              </tr>
+              <tr id="qrow-44">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="44"></td>
+                <td class="col-num">44</td>
+                <td class="col-ans"><span class="badge-ans" data-id="44">D</span></td>
+                <td class="col-keyword"><span class="keyword-text">Gestalt Continuity = đường liền mạch tiếp diễn</span></td>
+              </tr>
+              <tr id="qrow-45">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="45"></td>
+                <td class="col-num">45</td>
+                <td class="col-ans"><span class="badge-ans" data-id="45">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Eyetracking = theo dõi điểm nhìn trên giao diện</span></td>
+              </tr>
+              <tr id="qrow-46">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="46"></td>
+                <td class="col-num">46</td>
+                <td class="col-ans"><span class="badge-ans" data-id="46">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Heuristic Evaluation = chuyên gia dùng nguyên tắc kiểm tra</span></td>
+              </tr>
+              <tr id="qrow-47">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="47"></td>
+                <td class="col-num">47</td>
+                <td class="col-ans"><span class="badge-ans" data-id="47">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Alt text = bắt buộc cho Screen Reader</span></td>
+              </tr>
+              <tr id="qrow-48">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="48"></td>
+                <td class="col-num">48</td>
+                <td class="col-ans"><span class="badge-ans" data-id="48">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Persona = hồ sơ giả định đại diện nhóm user</span></td>
+              </tr>
+              <tr id="qrow-49">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="49"></td>
+                <td class="col-num">49</td>
+                <td class="col-ans"><span class="badge-ans" data-id="49">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Gamification = điểm thưởng, huy hiệu, xếp hạng</span></td>
+              </tr>
+              <tr id="qrow-50">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="50"></td>
+                <td class="col-num">50</td>
+                <td class="col-ans"><span class="badge-ans" data-id="50">D</span></td>
+                <td class="col-keyword"><span class="keyword-text">Xanh lá = thành công, an toàn, cho phép</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- BẢNG CÂU 51-100 -->
+        <div class="table-container">
+          <div class="table-controls">
+            <div class="table-title">
+              <i class="fa-solid fa-list-numeric"></i>
+              <span>Câu 51 - 100</span>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-show-all-section" data-start="51" data-end="100">
+                <i class="fa-solid fa-eye"></i> Hiện đáp án
+              </button>
+              <button class="btn btn-hide-all-section" data-start="51" data-end="100">
+                <i class="fa-solid fa-eye-slash"></i> Che đáp án
+              </button>
+            </div>
+          </div>
+          <table id="table-51-100">
+            <thead>
+              <tr>
+                <th class="col-check"><i class="fa-solid fa-check-double"></i></th>
+                <th class="col-num">Câu</th>
+                <th class="col-ans">Đáp án</th>
+                <th class="col-keyword">Từ khóa gợi nhớ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="qrow-51">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="51"></td>
+                <td class="col-num">51</td>
+                <td class="col-ans"><span class="badge-ans" data-id="51">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Accordion = thu gọn/mở rộng theo chiều dọc</span></td>
+              </tr>
+              <tr id="qrow-52">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="52"></td>
+                <td class="col-num">52</td>
+                <td class="col-ans"><span class="badge-ans" data-id="52">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Progressive Disclosure = hiện cốt lõi, ẩn nâng cao</span></td>
+              </tr>
+              <tr id="qrow-53">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="53"></td>
+                <td class="col-num">53</td>
+                <td class="col-ans"><span class="badge-ans" data-id="53">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Dropdown arrow = có submenu bên dưới</span></td>
+              </tr>
+              <tr id="qrow-54">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="54"></td>
+                <td class="col-num">54</td>
+                <td class="col-ans"><span class="badge-ans" data-id="54">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">User Journey Map = trải nghiệm + cảm xúc qua touchpoints</span></td>
+              </tr>
+              <tr id="qrow-55">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="55"></td>
+                <td class="col-num">55</td>
+                <td class="col-ans"><span class="badge-ans" data-id="55">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Grid system Desktop = 12 cột</span></td>
+              </tr>
+              <tr id="qrow-56">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="56"></td>
+                <td class="col-num">56</td>
+                <td class="col-ans"><span class="badge-ans" data-id="56">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Macro whitespace = khoảng trắng lớn giữa components</span></td>
+              </tr>
+              <tr id="qrow-57">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="57"></td>
+                <td class="col-num">57</td>
+                <td class="col-ans"><span class="badge-ans" data-id="57">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Focused = nhấp vào → sẵn sàng nhập liệu</span></td>
+              </tr>
+              <tr id="qrow-58">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="58"></td>
+                <td class="col-num">58</td>
+                <td class="col-ans"><span class="badge-ans" data-id="58">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">ALL CAPS = mất đường viền từ → khó đọc</span></td>
+              </tr>
+              <tr id="qrow-59">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="59"></td>
+                <td class="col-num">59</td>
+                <td class="col-ans"><span class="badge-ans" data-id="59">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">PNG = nền trong suốt cho UI tĩnh</span></td>
+              </tr>
+              <tr id="qrow-60">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="60"></td>
+                <td class="col-num">60</td>
+                <td class="col-ans"><span class="badge-ans" data-id="60">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Discoverability = dễ tìm thấy tính năng lần đầu</span></td>
+              </tr>
+              <tr id="qrow-61">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="61"></td>
+                <td class="col-num">61</td>
+                <td class="col-ans"><span class="badge-ans" data-id="61">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Microcopy = hướng dẫn, giảm lo lắng</span></td>
+              </tr>
+              <tr id="qrow-62">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="62"></td>
+                <td class="col-num">62</td>
+                <td class="col-ans"><span class="badge-ans" data-id="62">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Modal = yêu cầu chú ý/xác nhận quan trọng</span></td>
+              </tr>
+              <tr id="qrow-63">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="63"></td>
+                <td class="col-num">63</td>
+                <td class="col-ans"><span class="badge-ans" data-id="63">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Toast/Snackbar = tạm thời, tự biến mất</span></td>
+              </tr>
+              <tr id="qrow-64">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="64"></td>
+                <td class="col-num">64</td>
+                <td class="col-ans"><span class="badge-ans" data-id="64">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Kerning = khoảng cách 2 ký tự cụ thể</span></td>
+              </tr>
+              <tr id="qrow-65">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="65"></td>
+                <td class="col-num">65</td>
+                <td class="col-ans"><span class="badge-ans" data-id="65">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Tracking = khoảng cách đồng đều toàn bộ khối chữ</span></td>
+              </tr>
+              <tr id="qrow-66">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="66"></td>
+                <td class="col-num">66</td>
+                <td class="col-ans"><span class="badge-ans" data-id="66">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">60-30-10 = nền-phụ-nhấn</span></td>
+              </tr>
+              <tr id="qrow-67">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="67"></td>
+                <td class="col-num">67</td>
+                <td class="col-ans"><span class="badge-ans" data-id="67">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Padding = khoảng cách nội dung → viền Frame</span></td>
+              </tr>
+              <tr id="qrow-68">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="68"></td>
+                <td class="col-num">68</td>
+                <td class="col-ans"><span class="badge-ans" data-id="68">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">IA = tổ chức, phân cấp, dán nhãn nội dung</span></td>
+              </tr>
+              <tr id="qrow-69">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="69"></td>
+                <td class="col-num">69</td>
+                <td class="col-ans"><span class="badge-ans" data-id="69">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Carousel = banner blindness, bỏ qua slide sau</span></td>
+              </tr>
+              <tr id="qrow-70">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="70"></td>
+                <td class="col-num">70</td>
+                <td class="col-ans"><span class="badge-ans" data-id="70">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Form dài = Multi-step + Progress bar</span></td>
+              </tr>
+              <tr id="qrow-71">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="71"></td>
+                <td class="col-num">71</td>
+                <td class="col-ans"><span class="badge-ans" data-id="71">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Error message = chỉ rõ lỗi + hướng dẫn sửa</span></td>
+              </tr>
+              <tr id="qrow-72">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="72"></td>
+                <td class="col-num">72</td>
+                <td class="col-ans"><span class="badge-ans" data-id="72">D</span></td>
+                <td class="col-keyword"><span class="keyword-text">5 chiều IxD KHÔNG có Price</span></td>
+              </tr>
+              <tr id="qrow-73">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="73"></td>
+                <td class="col-num">73</td>
+                <td class="col-ans"><span class="badge-ans" data-id="73">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Main Component → Instance tự cập nhật (trừ override)</span></td>
+              </tr>
+              <tr id="qrow-74">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="74"></td>
+                <td class="col-num">74</td>
+                <td class="col-ans"><span class="badge-ans" data-id="74">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">High-fidelity prototype = tương tác gần giống thật</span></td>
+              </tr>
+              <tr id="qrow-75">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="75"></td>
+                <td class="col-num">75</td>
+                <td class="col-ans"><span class="badge-ans" data-id="75">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">User Interview = câu hỏi mở (Tại sao, Như thế nào)</span></td>
+              </tr>
+              <tr id="qrow-76">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="76"></td>
+                <td class="col-num">76</td>
+                <td class="col-ans"><span class="badge-ans" data-id="76">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Double Diamond = Discover-Define-Develop-Deliver</span></td>
+              </tr>
+              <tr id="qrow-77">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="77"></td>
+                <td class="col-num">77</td>
+                <td class="col-ans"><span class="badge-ans" data-id="77">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Đối xứng = cân bằng, ổn định, trang trọng</span></td>
+              </tr>
+              <tr id="qrow-78">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="78"></td>
+                <td class="col-num">78</td>
+                <td class="col-ans"><span class="badge-ans" data-id="78">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">iOS Tab Bar = tối đa 5 mục</span></td>
+              </tr>
+              <tr id="qrow-79">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="79"></td>
+                <td class="col-num">79</td>
+                <td class="col-ans"><span class="badge-ans" data-id="79">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Affordance = khả năng; Signifier = chỉ dẫn trực quan</span></td>
+              </tr>
+              <tr id="qrow-80">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="80"></td>
+                <td class="col-num">80</td>
+                <td class="col-ans"><span class="badge-ans" data-id="80">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Mù màu: KHÔNG chỉ dùng màu để truyền thông tin</span></td>
+              </tr>
+              <tr id="qrow-81">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="81"></td>
+                <td class="col-num">81</td>
+                <td class="col-ans"><span class="badge-ans" data-id="81">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Indeterminate = không biết khi nào xong</span></td>
+              </tr>
+              <tr id="qrow-82">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="82"></td>
+                <td class="col-num">82</td>
+                <td class="col-ans"><span class="badge-ans" data-id="82">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Badge = thông báo mới/chưa đọc</span></td>
+              </tr>
+              <tr id="qrow-83">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="83"></td>
+                <td class="col-num">83</td>
+                <td class="col-ans"><span class="badge-ans" data-id="83">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Dark Mode = dùng xám đậm thay vì đen tuyền</span></td>
+              </tr>
+              <tr id="qrow-84">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="84"></td>
+                <td class="col-num">84</td>
+                <td class="col-ans"><span class="badge-ans" data-id="84">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Thumb Zone = nửa dưới + trung tâm màn hình</span></td>
+              </tr>
+              <tr id="qrow-85">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="85"></td>
+                <td class="col-num">85</td>
+                <td class="col-ans"><span class="badge-ans" data-id="85">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Fat finger = vùng chạm nhỏ/gần → bấm nhầm</span></td>
+              </tr>
+              <tr id="qrow-86">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="86"></td>
+                <td class="col-num">86</td>
+                <td class="col-ans"><span class="badge-ans" data-id="86">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Checkbox = nhiều; Radio = một</span></td>
+              </tr>
+              <tr id="qrow-87">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="87"></td>
+                <td class="col-num">87</td>
+                <td class="col-ans"><span class="badge-ans" data-id="87">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Toggle = Bật/Tắt hiệu lực ngay (Wifi, Airplane)</span></td>
+              </tr>
+              <tr id="qrow-88">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="88"></td>
+                <td class="col-num">88</td>
+                <td class="col-ans"><span class="badge-ans" data-id="88">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Mobile-First = thiết kế mobile trước → mở rộng lên</span></td>
+              </tr>
+              <tr id="qrow-89">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="89"></td>
+                <td class="col-num">89</td>
+                <td class="col-ans"><span class="badge-ans" data-id="89">D</span></td>
+                <td class="col-keyword"><span class="keyword-text">Search Bar = Header, giữa hoặc góc phải trên</span></td>
+              </tr>
+              <tr id="qrow-90">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="90"></td>
+                <td class="col-num">90</td>
+                <td class="col-ans"><span class="badge-ans" data-id="90">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Parallax = nền chậm hơn foreground → 3D</span></td>
+              </tr>
+              <tr id="qrow-91">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="91"></td>
+                <td class="col-num">91</td>
+                <td class="col-ans"><span class="badge-ans" data-id="91">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Infinite Scroll + Footer = trải nghiệm tệ</span></td>
+              </tr>
+              <tr id="qrow-92">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="92"></td>
+                <td class="col-num">92</td>
+                <td class="col-ans"><span class="badge-ans" data-id="92">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Elevation = bóng đổ (Drop shadow)</span></td>
+              </tr>
+              <tr id="qrow-93">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="93"></td>
+                <td class="col-num">93</td>
+                <td class="col-ans"><span class="badge-ans" data-id="93">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">False Bottom = tưởng trang đã hết do khối màu/đường kẻ</span></td>
+              </tr>
+              <tr id="qrow-94">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="94"></td>
+                <td class="col-num">94</td>
+                <td class="col-ans"><span class="badge-ans" data-id="94">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">Label tốt nhất = đặt trên trường nhập (Top-aligned)</span></td>
+              </tr>
+              <tr id="qrow-95">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="95"></td>
+                <td class="col-num">95</td>
+                <td class="col-ans"><span class="badge-ans" data-id="95">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Lazy Loading = chỉ tải khi cuộn tới viewport</span></td>
+              </tr>
+              <tr id="qrow-96">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="96"></td>
+                <td class="col-num">96</td>
+                <td class="col-ans"><span class="badge-ans" data-id="96">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Onboarding = hướng dẫn user mới lần đầu mở app</span></td>
+              </tr>
+              <tr id="qrow-97">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="97"></td>
+                <td class="col-num">97</td>
+                <td class="col-ans"><span class="badge-ans" data-id="97">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Icon nhất quán = stroke weight + corner radius + style</span></td>
+              </tr>
+              <tr id="qrow-98">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="98"></td>
+                <td class="col-num">98</td>
+                <td class="col-ans"><span class="badge-ans" data-id="98">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Mega Menu = menu thả xuống dạng bảng nhiều nhóm</span></td>
+              </tr>
+              <tr id="qrow-99">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="99"></td>
+                <td class="col-num">99</td>
+                <td class="col-ans"><span class="badge-ans" data-id="99">C</span></td>
+                <td class="col-keyword"><span class="keyword-text">CES = đo mức dễ/khó hoàn thành tác vụ</span></td>
+              </tr>
+              <tr id="qrow-100">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="100"></td>
+                <td class="col-num">100</td>
+                <td class="col-ans"><span class="badge-ans" data-id="100">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Widow/Orphan = từ/dòng lẻ rớt xuống → mất thẩm mỹ</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- BẢNG CÂU 101-150 -->
+        <div class="table-container">
+          <div class="table-controls">
+            <div class="table-title">
+              <i class="fa-solid fa-list-numeric"></i>
+              <span>Câu 101 - 150</span>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-show-all-section" data-start="101" data-end="150">
+                <i class="fa-solid fa-eye"></i> Hiện đáp án
+              </button>
+              <button class="btn btn-hide-all-section" data-start="101" data-end="150">
+                <i class="fa-solid fa-eye-slash"></i> Che đáp án
+              </button>
+            </div>
+          </div>
+          <table id="table-101-150">
+            <thead>
+              <tr>
+                <th class="col-check"><i class="fa-solid fa-check-double"></i></th>
+                <th class="col-num">Câu</th>
+                <th class="col-ans">Đáp án</th>
+                <th class="col-keyword">Từ khóa gợi nhớ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="qrow-101">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="101"></td>
+                <td class="col-num">101</td>
+                <td class="col-ans"><span class="badge-ans" data-id="101">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Wearables = màn hình nhỏ, tối giản, vuốt/chạm đơn giản</span></td>
+              </tr>
+              <tr id="qrow-102">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="102"></td>
+                <td class="col-num">102</td>
+                <td class="col-ans"><span class="badge-ans" data-id="102">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Persona → tránh thiết kế theo suy đoán chủ quan</span></td>
+              </tr>
+              <tr id="qrow-103">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="103"></td>
+                <td class="col-num">103</td>
+                <td class="col-ans"><span class="badge-ans" data-id="103">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Doherty Threshold = phản hồi < 400ms → tăng năng suất</span></td>
+              </tr>
+              <tr id="qrow-104">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="104"></td>
+                <td class="col-num">104</td>
+                <td class="col-ans"><span class="badge-ans" data-id="104">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Component Property = biến thể không cần nhiều Variants</span></td>
+              </tr>
+              <tr id="qrow-105">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="105"></td>
+                <td class="col-num">105</td>
+                <td class="col-ans"><span class="badge-ans" data-id="105">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Open Card Sorting = user TỰ đặt tên nhóm</span></td>
+              </tr>
+              <tr id="qrow-106">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="106"></td>
+                <td class="col-num">106</td>
+                <td class="col-ans"><span class="badge-ans" data-id="106">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Grid = bố cục nhất quán, khoa học, dễ responsive</span></td>
+              </tr>
+              <tr id="qrow-107">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="107"></td>
+                <td class="col-num">107</td>
+                <td class="col-ans"><span class="badge-ans" data-id="107">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Usability Testing = quan sát user thật làm tác vụ</span></td>
+              </tr>
+              <tr id="qrow-108">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="108"></td>
+                <td class="col-num">108</td>
+                <td class="col-ans"><span class="badge-ans" data-id="108">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Hidden Affordance = tính năng ẩn cho đến khi tương tác</span></td>
+              </tr>
+              <tr id="qrow-109">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="109"></td>
+                <td class="col-num">109</td>
+                <td class="col-ans"><span class="badge-ans" data-id="109">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Nút "Mua ngay" = nổi bật, dễ thấy, vùng tương tác chính</span></td>
+              </tr>
+              <tr id="qrow-110">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="110"></td>
+                <td class="col-num">110</td>
+                <td class="col-ans"><span class="badge-ans" data-id="110">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Cognitive Load = nỗ lực tinh thần → UX phải giảm</span></td>
+              </tr>
+              <tr id="qrow-111">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="111"></td>
+                <td class="col-num">111</td>
+                <td class="col-ans"><span class="badge-ans" data-id="111">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Nút lớn = phù hợp ngón tay, tránh nhầm</span></td>
+              </tr>
+              <tr id="qrow-112">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="112"></td>
+                <td class="col-num">112</td>
+                <td class="col-ans"><span class="badge-ans" data-id="112">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Z-Pattern = landing page đơn giản → CTA</span></td>
+              </tr>
+              <tr id="qrow-113">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="113"></td>
+                <td class="col-num">113</td>
+                <td class="col-ans"><span class="badge-ans" data-id="113">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Group = gom nhóm; Frame = có auto layout, clipping</span></td>
+              </tr>
+              <tr id="qrow-114">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="114"></td>
+                <td class="col-num">114</td>
+                <td class="col-ans"><span class="badge-ans" data-id="114">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Flat Design = tối giản, màu phẳng, không bóng đổ</span></td>
+              </tr>
+              <tr id="qrow-115">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="115"></td>
+                <td class="col-num">115</td>
+                <td class="col-ans"><span class="badge-ans" data-id="115">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Gestalt Similarity = giống nhau → cùng nhóm</span></td>
+              </tr>
+              <tr id="qrow-116">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="116"></td>
+                <td class="col-num">116</td>
+                <td class="col-ans"><span class="badge-ans" data-id="116">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Churn rate = tỷ lệ rời bỏ/hủy dịch vụ</span></td>
+              </tr>
+              <tr id="qrow-117">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="117"></td>
+                <td class="col-num">117</td>
+                <td class="col-ans"><span class="badge-ans" data-id="117">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Accessibility = cho TẤT CẢ mọi người, kể cả khuyết tật</span></td>
+              </tr>
+              <tr id="qrow-118">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="118"></td>
+                <td class="col-num">118</td>
+                <td class="col-ans"><span class="badge-ans" data-id="118">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Above the fold = từ ngành in ấn báo chí</span></td>
+              </tr>
+              <tr id="qrow-119">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="119"></td>
+                <td class="col-num">119</td>
+                <td class="col-ans"><span class="badge-ans" data-id="119">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Variant = nhóm biến thể Component → chuyển đổi dễ</span></td>
+              </tr>
+              <tr id="qrow-120">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="120"></td>
+                <td class="col-num">120</td>
+                <td class="col-ans"><span class="badge-ans" data-id="120">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Responsive breakpoint = mốc chiều rộng thay đổi layout</span></td>
+              </tr>
+              <tr id="qrow-121">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="121"></td>
+                <td class="col-num">121</td>
+                <td class="col-ans"><span class="badge-ans" data-id="121">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Shadowing = quan sát user trong môi trường thực</span></td>
+              </tr>
+              <tr id="qrow-122">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="122"></td>
+                <td class="col-num">122</td>
+                <td class="col-ans"><span class="badge-ans" data-id="122">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Mobile hyperlink nhỏ → khó chạm, dễ nhầm</span></td>
+              </tr>
+              <tr id="qrow-123">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="123"></td>
+                <td class="col-num">123</td>
+                <td class="col-ans"><span class="badge-ans" data-id="123">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Affordance = gợi ý cách dùng (tay cầm → kéo)</span></td>
+              </tr>
+              <tr id="qrow-124">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="124"></td>
+                <td class="col-num">124</td>
+                <td class="col-ans"><span class="badge-ans" data-id="124">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Dark Mode chữ = sáng, tương phản cao với nền</span></td>
+              </tr>
+              <tr id="qrow-125">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="125"></td>
+                <td class="col-num">125</td>
+                <td class="col-ans"><span class="badge-ans" data-id="125">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Contextual Inquiry = phỏng vấn + quan sát tại hiện trường</span></td>
+              </tr>
+              <tr id="qrow-126">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="126"></td>
+                <td class="col-num">126</td>
+                <td class="col-ans"><span class="badge-ans" data-id="126">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Empty States = hướng dẫn user bắt đầu khi chưa có data</span></td>
+              </tr>
+              <tr id="qrow-127">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="127"></td>
+                <td class="col-num">127</td>
+                <td class="col-ans"><span class="badge-ans" data-id="127">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Responsive = tự điều chỉnh mọi thiết bị</span></td>
+              </tr>
+              <tr id="qrow-128">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="128"></td>
+                <td class="col-num">128</td>
+                <td class="col-ans"><span class="badge-ans" data-id="128">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">CTA = dẫn dắt hành động mục tiêu</span></td>
+              </tr>
+              <tr id="qrow-129">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="129"></td>
+                <td class="col-num">129</td>
+                <td class="col-ans"><span class="badge-ans" data-id="129">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Visual Hierarchy = điều hướng mắt theo thứ tự ưu tiên</span></td>
+              </tr>
+              <tr id="qrow-130">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="130"></td>
+                <td class="col-num">130</td>
+                <td class="col-ans"><span class="badge-ans" data-id="130">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Persona = hồ sơ giả định cho nhóm user mục tiêu</span></td>
+              </tr>
+              <tr id="qrow-131">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="131"></td>
+                <td class="col-num">131</td>
+                <td class="col-ans"><span class="badge-ans" data-id="131">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Grid = đồng bộ, trật tự, căn lề chính xác</span></td>
+              </tr>
+              <tr id="qrow-132">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="132"></td>
+                <td class="col-num">132</td>
+                <td class="col-ans"><span class="badge-ans" data-id="132">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Prototype = giả lập tương tác trước khi code</span></td>
+              </tr>
+              <tr id="qrow-133">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="133"></td>
+                <td class="col-num">133</td>
+                <td class="col-ans"><span class="badge-ans" data-id="133">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">White Space = tách biệt, thông thoáng, giảm áp lực</span></td>
+              </tr>
+              <tr id="qrow-134">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="134"></td>
+                <td class="col-num">134</td>
+                <td class="col-ans"><span class="badge-ans" data-id="134">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Dark Pattern = lừa user (khó hủy đăng ký)</span></td>
+              </tr>
+              <tr id="qrow-135">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="135"></td>
+                <td class="col-num">135</td>
+                <td class="col-ans"><span class="badge-ans" data-id="135">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Accessibility = cho tất cả, kể cả khuyết tật</span></td>
+              </tr>
+              <tr id="qrow-136">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="136"></td>
+                <td class="col-num">136</td>
+                <td class="col-ans"><span class="badge-ans" data-id="136">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Component Figma = tái sử dụng nhất quán</span></td>
+              </tr>
+              <tr id="qrow-137">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="137"></td>
+                <td class="col-num">137</td>
+                <td class="col-ans"><span class="badge-ans" data-id="137">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Icon = trực quan, dễ hiểu, nhất quán phong cách</span></td>
+              </tr>
+              <tr id="qrow-138">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="138"></td>
+                <td class="col-num">138</td>
+                <td class="col-ans"><span class="badge-ans" data-id="138">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Usability Testing = quan sát khó khăn thực tế</span></td>
+              </tr>
+              <tr id="qrow-139">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="139"></td>
+                <td class="col-num">139</td>
+                <td class="col-ans"><span class="badge-ans" data-id="139">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">SVG = co giãn không vỡ, lý tưởng cho icon/vector</span></td>
+              </tr>
+              <tr id="qrow-140">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="140"></td>
+                <td class="col-num">140</td>
+                <td class="col-ans"><span class="badge-ans" data-id="140">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Quá nhiều font → rối loạn, mất nhất quán</span></td>
+              </tr>
+              <tr id="qrow-141">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="141"></td>
+                <td class="col-num">141</td>
+                <td class="col-ans"><span class="badge-ans" data-id="141">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Vector trên Retina = không nhòe khi phóng đại</span></td>
+              </tr>
+              <tr id="qrow-142">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="142"></td>
+                <td class="col-num">142</td>
+                <td class="col-ans"><span class="badge-ans" data-id="142">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">HCI = nghiên cứu tương tác người-máy</span></td>
+              </tr>
+              <tr id="qrow-143">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="143"></td>
+                <td class="col-num">143</td>
+                <td class="col-ans"><span class="badge-ans" data-id="143">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Visibility = Progress bar, Spinner, thông báo trạng thái</span></td>
+              </tr>
+              <tr id="qrow-144">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="144"></td>
+                <td class="col-num">144</td>
+                <td class="col-ans"><span class="badge-ans" data-id="144">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">User Flow = sơ đồ các bước đạt mục tiêu</span></td>
+              </tr>
+              <tr id="qrow-145">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="145"></td>
+                <td class="col-num">145</td>
+                <td class="col-ans"><span class="badge-ans" data-id="145">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Consistency = đồng bộ phong cách + logic toàn bộ</span></td>
+              </tr>
+              <tr id="qrow-146">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="146"></td>
+                <td class="col-num">146</td>
+                <td class="col-ans"><span class="badge-ans" data-id="146">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Error 404 = trang không tìm thấy</span></td>
+              </tr>
+              <tr id="qrow-147">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="147"></td>
+                <td class="col-num">147</td>
+                <td class="col-ans"><span class="badge-ans" data-id="147">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Page Title rõ = user biết ở đâu + hỗ trợ SEO</span></td>
+              </tr>
+              <tr id="qrow-148">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="148"></td>
+                <td class="col-num">148</td>
+                <td class="col-ans"><span class="badge-ans" data-id="148">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Persona → quyết định thiết kế khách quan</span></td>
+              </tr>
+              <tr id="qrow-149">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="149"></td>
+                <td class="col-num">149</td>
+                <td class="col-ans"><span class="badge-ans" data-id="149">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Favicon = icon nhỏ trên tab trình duyệt</span></td>
+              </tr>
+              <tr id="qrow-150">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="150"></td>
+                <td class="col-num">150</td>
+                <td class="col-ans"><span class="badge-ans" data-id="150">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Breadcrumbs = xác định vị trí + quay lại cấp trên</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- BẢNG CÂU 151-200 -->
+        <div class="table-container">
+          <div class="table-controls">
+            <div class="table-title">
+              <i class="fa-solid fa-list-numeric"></i>
+              <span>Câu 151 - 200</span>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-show-all-section" data-start="151" data-end="200">
+                <i class="fa-solid fa-eye"></i> Hiện đáp án
+              </button>
+              <button class="btn btn-hide-all-section" data-start="151" data-end="200">
+                <i class="fa-solid fa-eye-slash"></i> Che đáp án
+              </button>
+            </div>
+          </div>
+          <table id="table-151-200">
+            <thead>
+              <tr>
+                <th class="col-check"><i class="fa-solid fa-check-double"></i></th>
+                <th class="col-num">Câu</th>
+                <th class="col-ans">Đáp án</th>
+                <th class="col-keyword">Từ khóa gợi nhớ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="qrow-151">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="151"></td>
+                <td class="col-num">151</td>
+                <td class="col-ans"><span class="badge-ans" data-id="151">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">User Research = giai đoạn đầu, thu thập nhu cầu/hành vi</span></td>
+              </tr>
+              <tr id="qrow-152">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="152"></td>
+                <td class="col-num">152</td>
+                <td class="col-ans"><span class="badge-ans" data-id="152">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">IxD = cách user tương tác + cách sản phẩm phản hồi</span></td>
+              </tr>
+              <tr id="qrow-153">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="153"></td>
+                <td class="col-num">153</td>
+                <td class="col-ans"><span class="badge-ans" data-id="153">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">IA = tổ chức, cấu trúc, phân nhóm nội dung</span></td>
+              </tr>
+              <tr id="qrow-154">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="154"></td>
+                <td class="col-num">154</td>
+                <td class="col-ans"><span class="badge-ans" data-id="154">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Accessibility = mọi người kể cả khuyết tật dùng được</span></td>
+              </tr>
+              <tr id="qrow-155">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="155"></td>
+                <td class="col-num">155</td>
+                <td class="col-ans"><span class="badge-ans" data-id="155">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Usability Testing = quan sát user thật + phát hiện vấn đề</span></td>
+              </tr>
+              <tr id="qrow-156">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="156"></td>
+                <td class="col-num">156</td>
+                <td class="col-ans"><span class="badge-ans" data-id="156">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Wireframe = sơ đồ cấu trúc thô (Low-fidelity)</span></td>
+              </tr>
+              <tr id="qrow-157">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="157"></td>
+                <td class="col-num">157</td>
+                <td class="col-ans"><span class="badge-ans" data-id="157">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Mockup = thiết kế high-fidelity chi tiết</span></td>
+              </tr>
+              <tr id="qrow-158">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="158"></td>
+                <td class="col-num">158</td>
+                <td class="col-ans"><span class="badge-ans" data-id="158">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Iterative Design = cải thiện liên tục qua phản hồi</span></td>
+              </tr>
+              <tr id="qrow-159">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="159"></td>
+                <td class="col-num">159</td>
+                <td class="col-ans"><span class="badge-ans" data-id="159">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Mobile-First = ưu tiên mobile → mở rộng ra desktop</span></td>
+              </tr>
+              <tr id="qrow-160">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="160"></td>
+                <td class="col-num">160</td>
+                <td class="col-ans"><span class="badge-ans" data-id="160">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Màu sắc = truyền thông điệp, nhấn, phân cấp, cảm xúc</span></td>
+              </tr>
+              <tr id="qrow-161">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="161"></td>
+                <td class="col-num">161</td>
+                <td class="col-ans"><span class="badge-ans" data-id="161">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Jakob's Law = thiết kế theo mô hình quen thuộc</span></td>
+              </tr>
+              <tr id="qrow-162">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="162"></td>
+                <td class="col-num">162</td>
+                <td class="col-ans"><span class="badge-ans" data-id="162">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Service Design = trải nghiệm xuyên suốt online + offline</span></td>
+              </tr>
+              <tr id="qrow-163">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="163"></td>
+                <td class="col-num">163</td>
+                <td class="col-ans"><span class="badge-ans" data-id="163">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Affinity Diagram = phân nhóm data → tìm insight</span></td>
+              </tr>
+              <tr id="qrow-164">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="164"></td>
+                <td class="col-num">164</td>
+                <td class="col-ans"><span class="badge-ans" data-id="164">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Prototype sớm = kiểm tra khả thi + tiết kiệm nguồn lực</span></td>
+              </tr>
+              <tr id="qrow-165">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="165"></td>
+                <td class="col-num">165</td>
+                <td class="col-ans"><span class="badge-ans" data-id="165">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Eye-tracking = data thực tế nơi user nhìn</span></td>
+              </tr>
+              <tr id="qrow-166">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="166"></td>
+                <td class="col-num">166</td>
+                <td class="col-ans"><span class="badge-ans" data-id="166">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Responsive = tự thay đổi bố cục theo màn hình</span></td>
+              </tr>
+              <tr id="qrow-167">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="167"></td>
+                <td class="col-num">167</td>
+                <td class="col-ans"><span class="badge-ans" data-id="167">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Usability = dễ học, hiệu quả, ghi nhớ, ít lỗi, hài lòng</span></td>
+              </tr>
+              <tr id="qrow-168">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="168"></td>
+                <td class="col-num">168</td>
+                <td class="col-ans"><span class="badge-ans" data-id="168">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">UI Kit = bộ component sẵn → thiết kế nhanh, đồng bộ</span></td>
+              </tr>
+              <tr id="qrow-169">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="169"></td>
+                <td class="col-num">169</td>
+                <td class="col-ans"><span class="badge-ans" data-id="169">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Design System = tài liệu toàn diện + quy tắc nhất quán</span></td>
+              </tr>
+              <tr id="qrow-170">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="170"></td>
+                <td class="col-num">170</td>
+                <td class="col-ans"><span class="badge-ans" data-id="170">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Micro-copy = copywriting giảm lo lắng, tăng click</span></td>
+              </tr>
+              <tr id="qrow-171">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="171"></td>
+                <td class="col-num">171</td>
+                <td class="col-ans"><span class="badge-ans" data-id="171">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">A/B Testing = so sánh data thực 2 phiên bản</span></td>
+              </tr>
+              <tr id="qrow-172">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="172"></td>
+                <td class="col-num">172</td>
+                <td class="col-ans"><span class="badge-ans" data-id="172">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Onboarding mobile = hiểu giá trị + cách dùng ngay</span></td>
+              </tr>
+              <tr id="qrow-173">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="173"></td>
+                <td class="col-num">173</td>
+                <td class="col-ans"><span class="badge-ans" data-id="173">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Fitts's Law = khoảng cách + kích thước mục tiêu</span></td>
+              </tr>
+              <tr id="qrow-174">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="174"></td>
+                <td class="col-num">174</td>
+                <td class="col-ans"><span class="badge-ans" data-id="174">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Hick's Law = nhiều lựa chọn → chậm quyết định</span></td>
+              </tr>
+              <tr id="qrow-175">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="175"></td>
+                <td class="col-num">175</td>
+                <td class="col-ans"><span class="badge-ans" data-id="175">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Consistency = giảm tải nhận thức, không học lại</span></td>
+              </tr>
+              <tr id="qrow-176">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="176"></td>
+                <td class="col-num">176</td>
+                <td class="col-ans"><span class="badge-ans" data-id="176">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Low-fidelity = phác thảo nhanh, tập trung cấu trúc</span></td>
+              </tr>
+              <tr id="qrow-177">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="177"></td>
+                <td class="col-num">177</td>
+                <td class="col-ans"><span class="badge-ans" data-id="177">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Cognitive Load = não có giới hạn → đơn giản hóa</span></td>
+              </tr>
+              <tr id="qrow-178">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="178"></td>
+                <td class="col-num">178</td>
+                <td class="col-ans"><span class="badge-ans" data-id="178">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">White Space = gắn kết/tách biệt nội dung</span></td>
+              </tr>
+              <tr id="qrow-179">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="179"></td>
+                <td class="col-num">179</td>
+                <td class="col-ans"><span class="badge-ans" data-id="179">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Accessibility = mọi người, kể cả khuyết tật</span></td>
+              </tr>
+              <tr id="qrow-180">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="180"></td>
+                <td class="col-num">180</td>
+                <td class="col-ans"><span class="badge-ans" data-id="180">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Visual Hierarchy = điều khiển mắt → thông tin chính</span></td>
+              </tr>
+              <tr id="qrow-181">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="181"></td>
+                <td class="col-num">181</td>
+                <td class="col-ans"><span class="badge-ans" data-id="181">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Error Page = thông báo rõ + xin lỗi + gợi ý quay lại</span></td>
+              </tr>
+              <tr id="qrow-182">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="182"></td>
+                <td class="col-num">182</td>
+                <td class="col-ans"><span class="badge-ans" data-id="182">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Progressive Disclosure = hiện cốt lõi, ẩn phụ</span></td>
+              </tr>
+              <tr id="qrow-183">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="183"></td>
+                <td class="col-num">183</td>
+                <td class="col-ans"><span class="badge-ans" data-id="183">A</span></td>
+                <td class="col-keyword"><span class="keyword-text">Icon = ít không gian + truyền tải nhanh</span></td>
+              </tr>
+              <tr id="qrow-184">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="184"></td>
+                <td class="col-num">184</td>
+                <td class="col-ans"><span class="badge-ans" data-id="184">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Style Guide = quy tắc trực quan đảm bảo nhất quán</span></td>
+              </tr>
+              <tr id="qrow-185">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="185"></td>
+                <td class="col-num">185</td>
+                <td class="col-ans"><span class="badge-ans" data-id="185">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">High-fidelity Mockup = chi tiết sát sản phẩm thật</span></td>
+              </tr>
+              <tr id="qrow-186">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="186"></td>
+                <td class="col-num">186</td>
+                <td class="col-ans"><span class="badge-ans" data-id="186">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">UCD = đặt người dùng làm trung tâm mọi quyết định</span></td>
+              </tr>
+              <tr id="qrow-187">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="187"></td>
+                <td class="col-num">187</td>
+                <td class="col-ans"><span class="badge-ans" data-id="187">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">A11y = screen reader, tương phản, phím tắt...</span></td>
+              </tr>
+              <tr id="qrow-188">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="188"></td>
+                <td class="col-num">188</td>
+                <td class="col-ans"><span class="badge-ans" data-id="188">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Mental Model = hình dung + kỳ vọng từ kinh nghiệm</span></td>
+              </tr>
+              <tr id="qrow-189">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="189"></td>
+                <td class="col-num">189</td>
+                <td class="col-ans"><span class="badge-ans" data-id="189">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">CTR = hiệu quả CTA/liên kết thu hút click</span></td>
+              </tr>
+              <tr id="qrow-190">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="190"></td>
+                <td class="col-num">190</td>
+                <td class="col-ans"><span class="badge-ans" data-id="190">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Design Thinking = Empathize-Define-Ideate-Prototype-Test</span></td>
+              </tr>
+              <tr id="qrow-191">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="191"></td>
+                <td class="col-num">191</td>
+                <td class="col-ans"><span class="badge-ans" data-id="191">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Search bar dễ thấy vì user tìm nó đầu tiên</span></td>
+              </tr>
+              <tr id="qrow-192">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="192"></td>
+                <td class="col-num">192</td>
+                <td class="col-ans"><span class="badge-ans" data-id="192">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Visual Weight = khả năng thu hút chú ý</span></td>
+              </tr>
+              <tr id="qrow-193">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="193"></td>
+                <td class="col-num">193</td>
+                <td class="col-ans"><span class="badge-ans" data-id="193">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Negative Space = khoảng nghỉ, tập trung nội dung chính</span></td>
+              </tr>
+              <tr id="qrow-194">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="194"></td>
+                <td class="col-num">194</td>
+                <td class="col-ans"><span class="badge-ans" data-id="194">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">User Personas = đại diện hóa nhóm user thực tế</span></td>
+              </tr>
+              <tr id="qrow-195">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="195"></td>
+                <td class="col-num">195</td>
+                <td class="col-ans"><span class="badge-ans" data-id="195">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Onboarding = ngắn gọn, súc tích, lợi ích chính</span></td>
+              </tr>
+              <tr id="qrow-196">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="196"></td>
+                <td class="col-num">196</td>
+                <td class="col-ans"><span class="badge-ans" data-id="196">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Typography = font + size + weight + line height + spacing</span></td>
+              </tr>
+              <tr id="qrow-197">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="197"></td>
+                <td class="col-num">197</td>
+                <td class="col-ans"><span class="badge-ans" data-id="197">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">UI = điểm chạm hình ảnh giữa người dùng + hệ thống</span></td>
+              </tr>
+              <tr id="qrow-198">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="198"></td>
+                <td class="col-num">198</td>
+                <td class="col-ans"><span class="badge-ans" data-id="198">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">UX = trải nghiệm tổng thể + cảm xúc khi dùng</span></td>
+              </tr>
+              <tr id="qrow-199">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="199"></td>
+                <td class="col-num">199</td>
+                <td class="col-ans"><span class="badge-ans" data-id="199">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">Kiểm thử = phát hiện sai sót, hiểu user, cải thiện</span></td>
+              </tr>
+              <tr id="qrow-200">
+                <td class="col-check"><input type="checkbox" class="custom-checkbox q-checkbox" data-id="200"></td>
+                <td class="col-num">200</td>
+                <td class="col-ans"><span class="badge-ans" data-id="200">B</span></td>
+                <td class="col-keyword"><span class="keyword-text">IxD = tương tác hiệu quả, logic, dễ hiểu</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- Section: Phân nhóm chủ đề lý thuyết -->
+      <section id="detailed-topics">
+        <h2 style="font-size: 1.8rem; border-bottom: 3px solid var(--primary); padding-bottom: 12px; margin-bottom: 30px;">
+          <i class="fa-solid fa-book-open"></i> 📚 PHÂN NHÓM THEO CHỦ ĐỀ VÀ KIẾN THỨC CHI TIẾT
+        </h2>
+
+        <!-- CHỦ ĐỀ 1 -->
+        <article class="card" id="topic-1">
+          <h3>🎯 CHỦ ĐỀ 1: CÁC ĐỊNH LUẬT & NGUYÊN TẮC THIẾT KẾ (UX Laws)</h3>
+          <p><strong>📝 Câu liên quan:</strong> 1, 17, 28, 36, 39, 43, 44, 79, 103, 108, 110, 115, 123, 161, 173, 174, 177, 188</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Kiến thức cốt lõi</h4>
+          
+          <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <h5>1. Affordance (Khả năng cung cấp) — Câu 1, 79, 108, 123</h5>
+              <ul>
+                <li><strong>Định nghĩa:</strong> Là những gợi ý trực quan giúp người dùng biết cách tương tác với đối tượng</li>
+                <li><strong>Ví dụ:</strong> Nút bấm trông lồi lên → gợi ý "ấn được"; tay cầm cửa → gợi ý "kéo"</li>
+                <li><strong>Signifier vs Affordance:</strong>
+                  <ul>
+                    <li><strong>Affordance</strong> = tính năng/hành động CÓ THỂ thực hiện</li>
+                    <li><strong>Signifier</strong> = yếu tố trực quan RA HIỆU cho người dùng về affordance đó</li>
+                  </ul>
+                </li>
+                <li><strong>Hidden Affordance</strong> = tính năng ẩn cho đến khi tương tác (menu hiện khi hover)</li>
+              </ul>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"Afford" = có khả năng chi trả/cung cấp → Affordance = đối tượng "cung cấp" gợi ý về cách dùng nó</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>2. Fitts's Law (Định luật Fitts) — Câu 17, 173</h5>
+              <ul>
+                <li><strong>Nội dung:</strong> Thời gian di chuyển đến mục tiêu phụ thuộc vào <strong>kích thước mục tiêu</strong> và <strong>khoảng cách đến nó</strong></li>
+                <li><strong>Ứng dụng:</strong> Nút quan trọng → làm TO + đặt GẦN vị trí tương tác</li>
+              </ul>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"<strong>F</strong>itts = <strong>F</strong>ar (xa) + <strong>F</strong>at (to)" → Xa thì lâu, To thì nhanh</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>3. Hick's Law (Định luật Hick) — Câu 28, 174</h5>
+              <ul>
+                <li><strong>Nội dung:</strong> Càng nhiều lựa chọn → càng lâu để quyết định</li>
+                <li><strong>Ứng dụng:</strong> Giảm số tùy chọn trong menu điều hướng</li>
+              </ul>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"<strong>Hick</strong> = <strong>H</strong>esitate (do dự)" → Nhiều lựa chọn → do dự lâu</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>4. Jakob's Law (Định luật Jakob) — Câu 36, 161</h5>
+              <ul>
+                <li><strong>Nội dung:</strong> Người dùng dành phần lớn thời gian trên sản phẩm KHÁC → họ mong đợi sản phẩm của bạn hoạt động TƯƠNG TỰ</li>
+                <li><strong>Ứng dụng:</strong> Đừng phát minh lại bánh xe, hãy tuân theo convention quen thuộc</li>
+              </ul>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"Jakob = <strong>J</strong>ust like others" → Giống người khác = tốt</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>5. Miller's Law — Câu 43</h5>
+              <ul>
+                <li><strong>Nội dung:</strong> Bộ nhớ ngắn hạn chứa được <strong>7 ± 2</strong> nhóm thông tin</li>
+                <li><strong>Ứng dụng:</strong> Nhóm nội dung, tab bar 3-5 mục, menu không quá 7 mục</li>
+              </ul>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"<strong>M</strong>iller = <strong>M</strong>agic number <strong>7</strong>" → Nhớ số 7!</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>6. Doherty Threshold — Câu 103</h5>
+              <ul>
+                <li><strong>Nội dung:</strong> Phản hồi hệ thống dưới <strong>400ms</strong> → năng suất tăng đáng kể</li>
+                <li><strong>Ứng dụng:</strong> Tối ưu tốc độ phản hồi, dùng animation che thời gian chờ</li>
+              </ul>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"<strong>D</strong>oherty = <strong>D</strong>elay < 400ms" → Đừng chậm quá 0.4 giây!</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>7. Gestalt Laws (Nguyên lý Gestalt) — Câu 44, 115</h5>
+              <ul>
+                <li><strong>Proximity (Lân cận):</strong> Gần nhau → cùng nhóm</li>
+                <li><strong>Similarity (Tương đồng):</strong> Giống nhau (màu, hình, kích thước) → cùng nhóm</li>
+                <li><strong>Closure (Đóng kín):</strong> Não tự hoàn thiện hình chưa trọn</li>
+                <li><strong>Continuity (Liên tục):</strong> Mắt đi theo đường liền mạch</li>
+              </ul>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"<strong>G</strong>estalt = <strong>G</strong>rouping" → Não tự gom nhóm thị giác</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>8. Mental Model — Câu 39, 188</h5>
+              <ul>
+                <li><strong>Định nghĩa:</strong> Niềm tin/kỳ vọng có sẵn của người dùng về cách hệ thống PHẢI hoạt động, dựa trên kinh nghiệm quá khứ</li>
+                <li><strong>Ứng dụng:</strong> Thiết kế phù hợp với mental model → user không cần học lại</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>9. Cognitive Load (Tải nhận thức) — Câu 110, 177</h5>
+              <ul>
+                <li><strong>Định nghĩa:</strong> Lượng nỗ lực tinh thần khi xử lý thông tin trên giao diện</li>
+                <li><strong>UX tốt = GIẢM cognitive load</strong> bằng: đơn giản hóa, phân nhóm, progressive disclosure</li>
+              </ul>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"Cognitive Load = Cồng kềnh → Loại bỏ!" → Giao diện phức tạp = não mệt</div>
+              </div>
+            </div>
+          </div>
+
+          <h4 style="border-left: 3px solid var(--danger); padding-left: 10px; margin-top: 30px;">🧠 Cách tư duy trả lời nhóm câu hỏi về Định luật:</h4>
+          <ol style="margin-top: 10px;">
+            <li><strong>Đọc tên định luật</strong> → liên hệ ngay từ khóa (Fitts = kích thước/khoảng cách, Hick = số lựa chọn...)</li>
+            <li><strong>Loại trừ đáp án liên quan đến kỹ thuật</strong> (code, server, mạng) → thường SAI vì đây là môn thiết kế</li>
+            <li>Đáp án nào nói về <strong>trải nghiệm, hành vi, tâm lý người dùng</strong> → thường ĐÚNG</li>
+          </ol>
+        </article>
+
+        <!-- CHỦ ĐỀ 2 -->
+        <article class="card" id="topic-2">
+          <h3>🎨 CHỦ ĐỀ 2: TYPOGRAPHY (NGHỆ THUẬT CHỮ)</h3>
+          <p><strong>📝 Câu liên quan:</strong> 4, 26, 30, 58, 64, 65, 100, 140, 196</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Kiến thức cốt lõi</h4>
+          
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Khái niệm</th>
+                <th>Giải thích</th>
+                <th>Mẹo nhớ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sans-serif</strong></td>
+                <td>Phông không chân → dễ đọc trên <strong>MÀN HÌNH</strong></td>
+                <td>"Sans = không có → không có chân → sạch sẽ trên digital"</td>
+              </tr>
+              <tr>
+                <td><strong>Serif</strong></td>
+                <td>Phông có chân → hay dùng cho <strong>IN ẤN</strong></td>
+                <td>"Serif = có chân → dùng trên giấy"</td>
+              </tr>
+              <tr>
+                <td><strong>Line height</strong></td>
+                <td>Khoảng cách dòng lý tưởng cho body: <strong>140-160%</strong></td>
+                <td>"Line height ≈ 1.5 lần font size"</td>
+              </tr>
+              <tr>
+                <td><strong>Kerning</strong></td>
+                <td>Khoảng cách giữa <strong>2 ký tự cụ thể</strong></td>
+                <td>"<strong>K</strong>erning = <strong>K</strong>ouple (cặp) → chỉ 2 chữ"</td>
+              </tr>
+              <tr>
+                <td><strong>Tracking</strong></td>
+                <td>Khoảng cách đồng đều cho <strong>toàn bộ khối chữ</strong></td>
+                <td>"<strong>T</strong>racking = <strong>T</strong>otal (toàn bộ)"</td>
+              </tr>
+              <tr>
+                <td><strong>Widow/Orphan</strong></td>
+                <td>Từ/dòng lẻ rớt lạc đầu/cuối đoạn → mất thẩm mỹ</td>
+                <td>"Widow = góa phụ cô đơn → dòng chữ cô đơn"</td>
+              </tr>
+              <tr>
+                <td><strong>ALL CAPS</strong></td>
+                <td>KHÔNG nên dùng cho body text → khó đọc</td>
+                <td>"IN HOA = MẤT ĐƯỜNG VIỀN TỪ"</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 20px;">
+            <p><strong>Hệ thống font mặc định:</strong></p>
+            <ul>
+              <li><strong>iOS</strong> = San Francisco</li>
+              <li><strong>Android</strong> = Roboto</li>
+            </ul>
+          </div>
+
+          <div class="alert alert-important">
+            <div class="alert-title"><i class="fa-solid fa-circle-exclamation"></i> Quy tắc vàng:</div>
+            <div class="alert-content">Không dùng quá <strong>2-3 loại font</strong> trong một thiết kế. Quá nhiều font → rối loạn thị giác.</div>
+          </div>
+
+          <p><strong>Đơn vị đo font Android:</strong> <strong>sp</strong> (Scale-independent Pixels) — Câu 12</p>
+        </article>
+
+        <!-- CHỦ ĐỀ 3 -->
+        <article class="card" id="topic-3">
+          <h3>🌈 CHỦ ĐỀ 3: MÀU SẮC & VISUAL DESIGN</h3>
+          <p><strong>📝 Câu liên quan:</strong> 16, 32, 40, 50, 66, 77, 83, 114, 124, 129, 160, 180, 192, 193</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Kiến thức cốt lõi</h4>
+
+          <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <h5>Hệ màu cho thiết bị số: <strong>RGB</strong> (Câu 16)</h5>
+              <ul>
+                <li>CMYK = in ấn</li>
+                <li>Pantone = màu tiêu chuẩn thương hiệu</li>
+                <li>RGB = màn hình (Red, Green, Blue)</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Quy tắc 60-30-10 (Câu 66)</h5>
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th>Tỷ lệ</th>
+                    <th>Vai trò</th>
+                    <th>Ví dụ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>60%</strong></td>
+                    <td>Màu chủ đạo (nền)</td>
+                    <td>Nền trắng/xám</td>
+                  </tr>
+                  <tr>
+                    <td><strong>30%</strong></td>
+                    <td>Màu phụ trợ</td>
+                    <td>Sidebar, header</td>
+                  </tr>
+                  <tr>
+                    <td><strong>10%</strong></td>
+                    <td>Màu nhấn (Accent)</td>
+                    <td>CTA button, link</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"60 = nền rộng, 30 = phụ vừa, 10 = nhấn ít" → Giống trang phục: áo → quần → phụ kiện</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>Tín hiệu màu sắc (Câu 40, 50)</h5>
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th>Màu</th>
+                    <th>Ý nghĩa</th>
+                    <th>Dùng cho</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>🟢 <strong>Xanh lá</strong></td>
+                    <td>Thành công, an toàn</td>
+                    <td>Success, Confirm</td>
+                  </tr>
+                  <tr>
+                    <td>🔴 <strong>Đỏ</strong></td>
+                    <td>Lỗi, nguy hiểm, xóa</td>
+                    <td>Error, Delete, Cancel</td>
+                  </tr>
+                  <tr>
+                    <td>🟡 <strong>Vàng</strong></td>
+                    <td>Cảnh báo</td>
+                    <td>Warning</td>
+                  </tr>
+                  <tr>
+                    <td>🔵 <strong>Xanh dương</strong></td>
+                    <td>Thông tin, tin cậy</td>
+                    <td>Info, Link</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="alert alert-warning" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-triangle-exclamation"></i> ⚠️ Cảnh báo:</div>
+                <div class="alert-content">Đỏ KHÔNG dùng cho Success — đây là bẫy thi thường gặp!</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>WCAG 2.1 Contrast (Câu 32)</h5>
+              <ul>
+                <li><strong>AA</strong> (tối thiểu): tỷ lệ tương phản <strong>4.5:1</strong> cho text thường</li>
+                <li><strong>AAA</strong> (nâng cao): <strong>7:1</strong></li>
+                <li><strong>Large text</strong>: <strong>3:1</strong></li>
+              </ul>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"<strong>AA = 4.5</strong>, <strong>AAA = 7</strong>" → A càng nhiều, yêu cầu càng cao</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>Dark Mode (Câu 83, 124)</h5>
+              <ul>
+                <li>❌ KHÔNG dùng đen tuyền (#000000) → gây mỏi mắt</li>
+                <li>✅ Dùng <strong>xám đậm</strong> (#121212, #1E1E1E)</li>
+                <li>Chữ phải <strong>sáng, tương phản cao</strong> với nền tối</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Visual Hierarchy (Câu 129, 180)</h5>
+              <p>Điều khiển mắt người dùng theo thứ tự ưu tiên thông tin. Công cụ gồm: kích thước, màu sắc, vị trí, khoảng trắng, font weight.</p>
+            </div>
+
+            <div>
+              <h5>Visual Weight (Câu 192)</h5>
+              <p>Khả năng thu hút chú ý dựa trên kích thước, màu, vị trí, độ đậm nhạt.</p>
+            </div>
+
+            <div>
+              <h5>Flat Design (Câu 114)</h5>
+              <p>Hình khối tối giản, màu phẳng, KHÔNG bóng đổ/chiều sâu phức tạp.</p>
+            </div>
+
+            <div>
+              <h5>Đối xứng (Symmetry) — Câu 77</h5>
+              <p>Tạo cảm giác <strong>cân bằng, ổn định, trang trọng</strong>.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHỦ ĐỀ 4 -->
+        <article class="card" id="topic-4">
+          <h3>📐 CHỦ ĐỀ 4: LAYOUT & PATTERNS</h3>
+          <p><strong>📝 Câu liên quan:</strong> 5, 8, 24, 55, 56, 88, 90, 112, 118, 120, 127, 131, 159, 166</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Kiến thức cốt lõi</h4>
+
+          <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <h5>Reading Patterns</h5>
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th>Pattern</th>
+                    <th>Áp dụng cho</th>
+                    <th>Mô tả</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>F-Pattern</strong></td>
+                    <td>Trang <strong>nhiều chữ</strong> (blog, báo)</td>
+                    <td>Đọc ngang trên → xuống trái → ngang giữa</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Z-Pattern</strong></td>
+                    <td><strong>Landing page</strong> ít chữ, CTA</td>
+                    <td>Mắt đi theo đường chữ Z</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"<strong>F</strong> = <strong>F</strong>ull text (nhiều chữ), <strong>Z</strong> = ít chữ kiểu Zig-zag"</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>Grid System (Câu 55, 106, 131)</h5>
+              <ul>
+                <li>Desktop web phổ biến: <strong>12 cột</strong> → linh hoạt chia 1/2, 1/3, 1/4, 1/6</li>
+                <li>Giúp: bố cục nhất quán, khoa học, dễ responsive</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Responsive vs Adaptive (Câu 8, 120, 127, 166)</h5>
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Responsive</th>
+                    <th>Adaptive</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Cách hoạt động</strong></td>
+                    <td>Lưới linh hoạt, tự co giãn</td>
+                    <td>Bố cục cố định cho từng breakpoint</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Breakpoint</strong></td>
+                    <td>Layout thay đổi mượt mà</td>
+                    <td>Nhảy giữa các bố cục cố định</td>
+                  </tr>
+                </tbody>
+              </table>
+              <ul>
+                <li><strong>Responsive breakpoint</strong> = mốc chiều rộng mà tại đó layout thay đổi</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Mobile-First (Câu 88, 159)</h5>
+              <ul>
+                <li>Thiết kế cho <strong>mobile trước</strong> → mở rộng lên tablet → desktop</li>
+                <li>Tập trung nội dung cốt lõi trước</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Whitespace (Câu 7, 56, 133, 178, 193)</h5>
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th>Loại</th>
+                    <th>Giải thích</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Macro whitespace</strong></td>
+                    <td>Khoảng trắng LỚN giữa các component/khu vực</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Micro whitespace</strong></td>
+                    <td>Khoảng nhỏ giữa dòng, chữ</td>
+                  </tr>
+                </tbody>
+              </table>
+              <ul>
+                <li>Tác dụng: phân cấp, giảm cognitive load, tách biệt/gắn kết nội dung</li>
+                <li><strong>KHÔNG</strong> chứa quảng cáo ẩn (bẫy thi!)</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Above the Fold (Câu 118)</h5>
+              <ul>
+                <li>Bắt nguồn từ <strong>ngành in ấn báo chí</strong> (phần trên nếp gập tờ báo)</li>
+                <li>Trong web: nội dung người dùng thấy TRƯỚC KHI cuộn</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Parallax Scrolling (Câu 90)</h5>
+              <ul>
+                <li>Nền di chuyển <strong>chậm hơn</strong> foreground → tạo ảo giác 3D</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHỦ ĐỀ 5 -->
+        <article class="card" id="topic-5">
+          <h3>🧩 CHỦ ĐỀ 5: THÀNH PHẦN GIAO DIỆN (UI COMPONENTS)</h3>
+          <p><strong>📝 Câu liên quan:</strong> 6, 11, 13, 14, 15, 25, 29, 31, 33, 34, 38, 51, 53, 57, 62, 63, 69, 70, 71, 78, 81, 82, 85, 86, 87, 91, 93, 94, 98, 109, 111, 126, 128, 137, 146, 149, 150, 183</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Bảng tổng hợp Components</h4>
+          
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Chức năng</th>
+                <th>Mẹo nhớ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>CTA (Call to Action)</strong></td>
+                <td>Kêu gọi hành động: Mua ngay, Đăng ký</td>
+                <td>"CTA = C'mon Take Action!"</td>
+              </tr>
+              <tr>
+                <td><strong>Breadcrumbs</strong></td>
+                <td>Hiện vị trí trong cấu trúc, dễ quay lại</td>
+                <td>"Vụn bánh mì → tìm đường về"</td>
+              </tr>
+              <tr>
+                <td><strong>Hamburger menu (☰)</strong></td>
+                <td>Menu 3 gạch ngang, ẨN điều hướng</td>
+                <td>"Ẩn = giảm khám phá tính năng"</td>
+              </tr>
+              <tr>
+                <td><strong>Tooltip</strong></td>
+                <td>Giải thích ngắn khi hover icon</td>
+                <td>"Tip = mẹo nhỏ xuất hiện nhanh"</td>
+              </tr>
+              <tr>
+                <td><strong>Accordion</strong></td>
+                <td>Thu gọn/mở rộng dọc (FAQ)</td>
+                <td>"Đàn accordion = kéo ra/đẩy vào"</td>
+              </tr>
+              <tr>
+                <td><strong>Modal Window</strong></td>
+                <td>Cửa sổ yêu cầu xác nhận/chú ý</td>
+                <td>"Modal = PHẢI xử lý trước khi tiếp tục"</td>
+              </tr>
+              <tr>
+                <td><strong>Toast/Snackbar</strong></td>
+                <td>Thông báo tạm thời, tự biến mất</td>
+                <td>"Toast = bật lên rồi... biến mất"</td>
+              </tr>
+              <tr>
+                <td><strong>Stepper</strong></td>
+                <td>Tăng/giảm giá trị số (+ / −)</td>
+                <td>"Step = bước → tăng/giảm từng bước"</td>
+              </tr>
+              <tr>
+                <td><strong>Toggle Switch</strong></td>
+                <td>Bật/Tắt ngay lập tức</td>
+                <td>"Toggle = công tắc đèn"</td>
+              </tr>
+              <tr>
+                <td><strong>Checkbox</strong></td>
+                <td>Chọn NHIỀU tùy chọn</td>
+                <td>"Check = đánh dấu nhiều ô"</td>
+              </tr>
+              <tr>
+                <td><strong>Radio Button</strong></td>
+                <td>Chọn MỘT trong nhóm</td>
+                <td>"Radio = một kênh tại một thời điểm"</td>
+              </tr>
+              <tr>
+                <td><strong>Badge</strong></td>
+                <td>Chấm đỏ + số = thông báo mới</td>
+                <td>"Badge = huy hiệu thông báo"</td>
+              </tr>
+              <tr>
+                <td><strong>Carousel</strong></td>
+                <td>Băng chuyền hình ảnh, dễ bị bỏ qua</td>
+                <td>"Banner blindness = mù carousel"</td>
+              </tr>
+              <tr>
+                <td><strong>Mega Menu</strong></td>
+                <td>Menu bảng lớn, nhiều nhóm danh mục</td>
+                <td>"Mega = to, thả xuống nhiều cột"</td>
+              </tr>
+              <tr>
+                <td><strong>Skeleton Loading</strong></td>
+                <td>Khung xương trước khi nội dung tải</td>
+                <td>"Xương → da thịt = bố cục → nội dung"</td>
+              </tr>
+              <tr>
+                <td><strong>Splash Screen</strong></td>
+                <td>Màn hình logo khi mở app</td>
+                <td>"Splash = tung tóe → app mở ra"</td>
+              </tr>
+              <tr>
+                <td><strong>Favicon</strong></td>
+                <td>Icon nhỏ trên tab trình duyệt</td>
+                <td>"Fav + icon = icon yêu thích"</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 30px;">📖 Kiến thức quan trọng</h4>
+          
+          <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <h5>Trạng thái nhập liệu (Câu 57)</h5>
+              <p><strong>Default</strong> → <strong>Focused</strong> (nhấp vào, sẵn sàng nhập) → <strong>Error</strong> → <strong>Disabled</strong></p>
+            </div>
+
+            <div>
+              <h5>Tab Bar (Câu 25, 78)</h5>
+              <ul>
+                <li>Nên chứa <strong>3-5 mục</strong> (chung)</li>
+                <li>iOS (Apple): tối đa <strong>5 mục</strong></li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Progress Bar (Câu 81)</h5>
+              <ul>
+                <li><strong>Determinate</strong> = biết % hoàn thành</li>
+                <li><strong>Indeterminate</strong> = KHÔNG biết khi nào xong</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Pagination vs Infinite Scroll (Câu 42, 91)</h5>
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Pagination</th>
+                    <th>Infinite Scroll</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Khi nào dùng</strong></td>
+                    <td>E-commerce, tìm kiếm (cần quay lại)</td>
+                    <td>Mạng xã hội, feed</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Vấn đề</strong></td>
+                    <td>Click nhiều</td>
+                    <td>Footer không thể chạm + banner blindness</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div>
+              <h5>Form Design (Câu 70, 71, 94)</h5>
+              <ul>
+                <li>Form dài → <strong>chia Multi-step + Progress bar</strong></li>
+                <li>Label tốt nhất: <strong>đặt TRÊN trường nhập</strong> (Top-aligned)</li>
+                <li>Error message: <strong>chỉ rõ lỗi + hướng dẫn sửa</strong> (KHÔNG dùng mã lỗi kỹ thuật)</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Empty State (Câu 29, 126)</h5>
+              <p>Cung cấp hình minh họa + giải thích + <strong>hướng dẫn hành động tiếp theo</strong>.</p>
+            </div>
+
+            <div>
+              <h5>False Bottom (Câu 93)</h5>
+              <p>Đường kẻ/khối màu lớn → user TƯỞNG trang đã hết → không cuộn tiếp.</p>
+            </div>
+
+            <div>
+              <h5>Hover State (Câu 34)</h5>
+              <p><strong>KHÔNG tồn tại trên cảm ứng</strong> → đừng giấu thông tin quan trọng chỉ khi hover.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHỦ ĐỀ 6 -->
+        <article class="card" id="topic-6">
+          <h3>Figma Tools — Câu 20, 21, 27, 37, 67, 73, 104, 113, 119, 136</h3>
+          <p><strong>📝 Câu liên quan:</strong> 20, 21, 27, 37, 67, 73, 104, 113, 119, 136</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Kiến thức cốt lõi</h4>
+
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Tính năng Figma</th>
+                <th>Chức năng</th>
+                <th>Phím tắt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Frame</strong></td>
+                <td>Khung có auto layout, clipping</td>
+                <td><strong>F</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Group</strong></td>
+                <td>Gom nhóm đơn thuần</td>
+                <td>Ctrl+G</td>
+              </tr>
+              <tr>
+                <td><strong>Auto Layout</strong></td>
+                <td>Frame tự co giãn theo nội dung</td>
+                <td>Shift+A</td>
+              </tr>
+              <tr>
+                <td><strong>Constraints</strong></td>
+                <td>Xác định phần tử phản hồi khi resize</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Variants</strong></td>
+                <td>Quản lý trạng thái Component (Hover, Active, Disabled)</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Component</strong></td>
+                <td>Tái sử dụng nhất quán, sửa gốc → instance cập nhật</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Component Property</strong></td>
+                <td>Biến thể trực tiếp trong Component, ít Variants hơn</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Padding</strong></td>
+                <td>Khoảng cách nội dung → viền Frame</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+            <div>
+              <h5>Main Component vs Instance (Câu 73)</h5>
+              <ul>
+                <li>Sửa <strong>Main Component</strong> → Instance <strong>tự cập nhật</strong></li>
+                <li><strong>NGOẠI TRỪ</strong> thuộc tính đã bị user <strong>override</strong> (ghi đè)</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Group vs Frame (Câu 113)</h5>
+              <ul>
+                <li><strong>Group</strong> = gom nhóm đơn thuần, không có tính năng đặc biệt</li>
+                <li><strong>Frame</strong> = có kích thước, auto layout, clipping, constraints</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="alert alert-tip">
+            <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ phím tắt Figma:</div>
+            <div class="alert-content">
+              <ul>
+                <li><strong>F</strong> = <strong>F</strong>rame</li>
+                <li><strong>R</strong> = <strong>R</strong>ectangle (hình chữ nhật)</li>
+                <li><strong>T</strong> = <strong>T</strong>ext</li>
+                <li><strong>V</strong> = mo<strong>V</strong>e (di chuyển)</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHỦ ĐỀ 7 -->
+        <article class="card" id="topic-7">
+          <h3>🔬 CHỦ ĐỀ 7: UX RESEARCH & METHODS</h3>
+          <p><strong>📝 Câu liên quan:</strong> 19, 41, 45, 46, 48, 54, 60, 75, 76, 96, 99, 102, 105, 107, 121, 125, 130, 138, 144, 148, 151, 155, 163, 164, 165, 171, 172, 186, 189, 190, 194, 195, 199</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Bảng tổng hợp phương pháp</h4>
+
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Phương pháp</th>
+                <th>Giải thích</th>
+                <th>Giai đoạn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Persona</strong></td>
+                <td>Hồ sơ giả định đại diện nhóm user mục tiêu</td>
+                <td>Research</td>
+              </tr>
+              <tr>
+                <td><strong>User Interview</strong></td>
+                <td>Phỏng vấn câu hỏi MỞ (Tại sao, Như thế nào)</td>
+                <td>Research</td>
+              </tr>
+              <tr>
+                <td><strong>Card Sorting</strong></td>
+                <td>User phân nhóm nội dung → hiểu IA</td>
+                <td>Research/IA</td>
+              </tr>
+              <tr>
+                <td><strong>Card Sorting Mở</strong></td>
+                <td>User TỰ đặt tên nhóm</td>
+                <td>Research/IA</td>
+              </tr>
+              <tr>
+                <td><strong>Card Sorting Đóng</strong></td>
+                <td>User phân vào nhóm ĐÃ ĐỊNH SẴN</td>
+                <td>Research/IA</td>
+              </tr>
+              <tr>
+                <td><strong>Usability Testing</strong></td>
+                <td>Quan sát user thật làm tác vụ</td>
+                <td>Testing</td>
+              </tr>
+              <tr>
+                <td><strong>Heuristic Evaluation</strong></td>
+                <td>Chuyên gia dùng nguyên tắc Nielsen kiểm tra</td>
+                <td>Evaluation</td>
+              </tr>
+              <tr>
+                <td><strong>A/B Testing</strong></td>
+                <td>So sánh 2 phiên bản giao diện bằng data thực</td>
+                <td>Testing</td>
+              </tr>
+              <tr>
+                <td><strong>Eye-tracking</strong></td>
+                <td>Theo dõi điểm nhìn + thời gian tập trung</td>
+                <td>Research</td>
+              </tr>
+              <tr>
+                <td><strong>Shadowing</strong></td>
+                <td>Quan sát user KHÔNG can thiệp trong môi trường thực</td>
+                <td>Research</td>
+              </tr>
+              <tr>
+                <td><strong>Contextual Inquiry</strong></td>
+                <td>Phỏng vấn + quan sát tại hiện trường</td>
+                <td>Research</td>
+              </tr>
+              <tr>
+                <td><strong>User Journey Map</strong></td>
+                <td>Hình dung trải nghiệm + cảm xúc qua touchpoints</td>
+                <td>Analysis</td>
+              </tr>
+              <tr>
+                <td><strong>Affinity Diagram</strong></td>
+                <td>Phân nhóm data thu thập → tìm insight</td>
+                <td>Synthesis</td>
+              </tr>
+              <tr>
+                <td><strong>User Flow</strong></td>
+                <td>Sơ đồ các bước user thực hiện để đạt mục tiêu</td>
+                <td>Design</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 30px;">Quy trình & Framework</h4>
+          
+          <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <h5>Design Thinking — Câu 190</h5>
+              <p>5 giai đoạn: <strong>Empathize → Define → Ideate → Prototype → Test</strong></p>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"<strong>E</strong>m <strong>Đ</strong>ẹp <strong>I</strong>u <strong>P</strong>rototype <strong>T</strong>hật" = Empathize, Define, Ideate, Prototype, Test</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>Double Diamond — Câu 76</h5>
+              <p>4 giai đoạn: <strong>Discover → Define → Develop → Deliver</strong></p>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"<strong>4D</strong> = Discover, Define, Develop, Deliver" (tất cả bắt đầu bằng D)</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>Các khái niệm đo lường UX</h5>
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th>Chỉ số</th>
+                    <th>Ý nghĩa</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>CES</strong> (Customer Effort Score)</td>
+                    <td>Mức dễ/khó hoàn thành tác vụ</td>
+                  </tr>
+                  <tr>
+                    <td><strong>CTR</strong> (Click-Through Rate)</td>
+                    <td>Hiệu quả thu hút click của CTA/link</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Churn Rate</strong></td>
+                    <td>Tỷ lệ rời bỏ/hủy dịch vụ</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div>
+              <h5>Onboarding (Câu 96, 172, 195)</h5>
+              <ul>
+                <li>Hướng dẫn user mới hiểu giá trị + cách dùng</li>
+                <li>Phải <strong>ngắn gọn, súc tích</strong>, tập trung lợi ích chính</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHỦ ĐỀ 8 -->
+        <article class="card" id="topic-8">
+          <h3>♿ CHỦ ĐỀ 8: ACCESSIBILITY (KHẢ NĂNG TIẾP CẬN)</h3>
+          <p><strong>📝 Câu liên quan:</strong> 47, 80, 117, 135, 154, 179, 187</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Kiến thức cốt lõi</h4>
+          
+          <ul>
+            <li><strong>Accessibility (A11y)</strong> = sản phẩm dùng được bởi <strong>TẤT CẢ mọi người</strong>, kể cả khuyết tật (thị giác, thính giác, vận động)</li>
+            <li><strong>Alt text</strong> = bắt buộc cho hình ảnh → Screen Reader đọc được (Câu 47)</li>
+            <li><strong>Mù màu</strong> → KHÔNG chỉ dùng màu để truyền tải thông tin → kết hợp icon, text, pattern (Câu 80)</li>
+            <li><strong>WCAG 2.1 AA</strong> → tương phản tối thiểu <strong>4.5:1</strong> (Câu 32)</li>
+          </ul>
+
+          <div class="alert alert-important">
+            <div class="alert-title"><i class="fa-solid fa-triangle-exclamation"></i> Bẫy thi thường gặp:</div>
+            <div class="alert-content">Accessibility KHÔNG phải chỉ dành cho "chuyên gia" hay "khách trả phí" → dành cho TẤT CẢ MỌI NGƯỜI</div>
+          </div>
+
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 25px;">Các biện pháp đảm bảo A11y:</h4>
+          <ol style="margin-top: 10px;">
+            <li>Alt text cho hình ảnh</li>
+            <li>Tương phản màu đạt chuẩn WCAG</li>
+            <li>Hỗ trợ Screen Reader</li>
+            <li>Hỗ trợ phím tắt (keyboard navigation)</li>
+            <li>KHÔNG chỉ dùng màu truyền tải thông tin</li>
+            <li>Bổ sung pattern/icon cho biểu đồ</li>
+          </ol>
+        </article>
+
+        <!-- CHỦ ĐỀ 9 -->
+        <article class="card" id="topic-9">
+          <h3>📱 CHỦ ĐỀ 9: MOBILE DESIGN</h3>
+          <p><strong>📝 Câu liên quan:</strong> 22, 23, 84, 85, 101, 111, 122</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Kiến thức cốt lõi</h4>
+          
+          <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <h5>Kích thước vùng chạm (Touch Target)</h5>
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th>Nền tảng</th>
+                    <th>Kích thước tối thiểu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>iOS</strong> (Apple HIG)</td>
+                    <td><strong>44x44 pt</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Android</strong> (Material Design)</td>
+                    <td><strong>48x48 dp</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="alert alert-tip" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+                <div class="alert-content">"iOS = <strong>44</strong>, Android = <strong>48</strong>" → Apple ít hơn Google 4 đơn vị</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>Thumb Zone (Câu 84)</h5>
+              <ul>
+                <li>Vùng thoải mái nhất: <strong>nửa dưới + trung tâm</strong> màn hình</li>
+                <li>Đặt nút quan trọng trong vùng này</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Fat Finger Problem (Câu 85)</h5>
+              <ul>
+                <li>Vùng chạm quá nhỏ/gần → bấm nhầm</li>
+                <li>Giải pháp: nút đủ lớn + khoảng cách giữa các nút</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Wearables (Câu 101)</h5>
+              <ul>
+                <li>Thách thức: màn hình <strong>cực nhỏ</strong></li>
+                <li>Giải pháp: <strong>tối giản</strong> nội dung, ưu tiên vuốt/chạm đơn giản</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHỦ ĐỀ 10 -->
+        <article class="card" id="topic-10">
+          <h3>📂 CHỦ ĐỀ 10: ĐỊNH DẠNG FILE & KỸ THUẬT</h3>
+          <p><strong>📝 Câu liên quan:</strong> 9, 52, 59, 95, 139, 141</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Bảng tổng hợp định dạng</h4>
+          
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Định dạng</th>
+                <th>Đặc điểm</th>
+                <th>Dùng cho</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>SVG</strong></td>
+                <td>Vector, co giãn không vỡ, mọi DPI</td>
+                <td>Icon, logo, đồ họa vector</td>
+              </tr>
+              <tr>
+                <td><strong>PNG</strong></td>
+                <td>Bitmap, hỗ trợ <strong>nền trong suốt</strong></td>
+                <td>Logo, UI tĩnh trên web</td>
+              </tr>
+              <tr>
+                <td><strong>JPEG</strong></td>
+                <td>Bitmap, nén tốt, KHÔNG trong suốt</td>
+                <td>Ảnh chụp, hình nền</td>
+              </tr>
+              <tr>
+                <td><strong>GIF</strong></td>
+                <td>Animation đơn giản</td>
+                <td>Animation ngắn</td>
+              </tr>
+              <tr>
+                <td><strong>BMP</strong></td>
+                <td>Bitmap không nén</td>
+                <td>Hiếm dùng trong web</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 20px;">
+            <h5>Lazy Loading (Câu 95)</h5>
+            <p>Chỉ tải ảnh/nội dung khi user <strong>cuộn tới viewport</strong> → tăng tốc tải trang ban đầu.</p>
+          </div>
+
+          <div>
+            <h5>Progressive Disclosure (Câu 52, 182)</h5>
+            <p>Ban đầu chỉ hiện <strong>cốt lõi</strong> → user mở rộng xem nâng cao khi cần. Giúp giảm cognitive load.</p>
+          </div>
+        </article>
+
+        <!-- CHỦ ĐỀ 11 -->
+        <article class="card" id="topic-11">
+          <h3>🏗️ CHỦ ĐỀ 11: QUY TRÌNH THIẾT KẾ & KHÁI NIỆM CỐT LÕI</h3>
+          <p><strong>📝 Câu liên quan:</strong> 10, 35, 61, 68, 72, 74, 97, 132, 134, 145, 147, 152, 153, 156, 157, 158, 162, 168, 169, 175, 176, 181, 184, 185, 186, 197, 198, 200</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 Phân biệt UI vs UX</h4>
+          
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>UI (User Interface)</th>
+                <th>UX (User Experience)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Là gì</strong></td>
+                <td>Điểm chạm hình ảnh (nút, màu, layout)</td>
+                <td>Trải nghiệm tổng thể + cảm xúc</td>
+              </tr>
+              <tr>
+                <td><strong>Tập trung</strong></td>
+                <td>Giao diện trông thế nào</td>
+                <td>Giao diện hoạt động thế nào</td>
+              </tr>
+              <tr>
+                <td><strong>Ví dụ</strong></td>
+                <td>Nút "Mua ngay" màu cam, font 16px</td>
+                <td>Quy trình mua hàng mượt mà trong 3 bước</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 30px;">Quy trình thiết kế: Wireframe → Mockup → Prototype</h4>
+          
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Giai đoạn</th>
+                <th>Độ trung thực</th>
+                <th>Mô tả</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Wireframe</strong></td>
+                <td><strong>Low-fidelity</strong></td>
+                <td>Phác thảo cấu trúc thô, trắng đen</td>
+              </tr>
+              <tr>
+                <td><strong>Mockup</strong></td>
+                <td><strong>High-fidelity</strong></td>
+                <td>Thiết kế tĩnh chi tiết (màu, font, ảnh)</td>
+              </tr>
+              <tr>
+                <td><strong>Prototype</strong></td>
+                <td><strong>Interactive</strong></td>
+                <td>Giả lập tương tác chuyển cảnh</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="alert alert-tip">
+            <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ:</div>
+            <div class="alert-content">"<strong>W</strong>ire = dây (thô) → <strong>M</strong>ockup = mô hình (chi tiết) → <strong>P</strong>rototype = nguyên mẫu (tương tác)"</div>
+          </div>
+
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 30px;">Các khái niệm quan trọng khác</h4>
+          
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Khái niệm</th>
+                <th>Giải thích</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Dark Pattern</strong></td>
+                <td>Thủ thuật LỪA user (khó hủy đăng ký, mua nhầm)</td>
+              </tr>
+              <tr>
+                <td><strong>Consistency</strong></td>
+                <td>Đồng bộ phong cách + logic tương tác toàn sản phẩm</td>
+              </tr>
+              <tr>
+                <td><strong>Discoverability</strong></td>
+                <td>User MỚI dễ tìm thấy + hiểu cách dùng tính năng</td>
+              </tr>
+              <tr>
+                <td><strong>Microcopy</strong></td>
+                <td>Văn bản nhỏ hướng dẫn/giảm lo lắng (nút, placeholder)</td>
+              </tr>
+              <tr>
+                <td><strong>Information Architecture</strong></td>
+                <td>Tổ chức, phân cấp, dán nhãn nội dung</td>
+              </tr>
+              <tr>
+                <td><strong>Interaction Design (IxD)</strong></td>
+                <td>Thiết kế tương tác giữa user ↔ sản phẩm</td>
+              </tr>
+              <tr>
+                <td><strong>Iterative Design</strong></td>
+                <td>Thiết kế lặp → cải thiện qua phản hồi mỗi vòng</td>
+              </tr>
+              <tr>
+                <td><strong>User Centered Design (UCD)</strong></td>
+                <td>Đặt user làm trung tâm mọi quyết định</td>
+              </tr>
+              <tr>
+                <td><strong>Service Design</strong></td>
+                <td>Trải nghiệm xuyên suốt online + offline</td>
+              </tr>
+              <tr>
+                <td><strong>UI Kit</strong></td>
+                <td>Bộ component sẵn (nút, icon, màu) → thiết kế nhanh</td>
+              </tr>
+              <tr>
+                <td><strong>Design System</strong></td>
+                <td>Tài liệu toàn diện: component + quy tắc + nguyên tắc</td>
+              </tr>
+              <tr>
+                <td><strong>Style Guide</strong></td>
+                <td>Quy tắc trực quan: màu, font, size, cách dùng</td>
+              </tr>
+              <tr>
+                <td><strong>Gamification</strong></td>
+                <td>Dùng cơ chế game (điểm, huy hiệu, xếp hạng)</td>
+              </tr>
+              <tr>
+                <td><strong>HCI</strong></td>
+                <td>Nhiều nghiên cứu tương tác người-máy tính</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+            <div>
+              <h5>5 chiều của Interaction Design (Câu 72)</h5>
+              <ol style="margin-left: 20px;">
+                <li>Words (Từ ngữ)</li>
+                <li>Visual Representations (Hình ảnh)</li>
+                <li>Physical Objects/Space (Vật thể/Không gian)</li>
+                <li>Time (Thời gian)</li>
+                <li>Behavior (Hành vi)</li>
+              </ol>
+              <div class="alert alert-warning" style="margin: 10px 0;">
+                <div class="alert-title"><i class="fa-solid fa-triangle-exclamation"></i> ⚠️ Cảnh báo:</div>
+                <div class="alert-content">KHÔNG có Price (Giá thành) → đây là bẫy thi!</div>
+              </div>
+            </div>
+
+            <div>
+              <h5>Material Design - Elevation (Câu 92)</h5>
+              <p>Biểu diễn bằng <strong>bóng đổ (Drop shadow)</strong> → mô phỏng khoảng cách trên trục Z.</p>
+            </div>
+
+            <div>
+              <h5>Error Page (Câu 146, 181)</h5>
+              <ul>
+                <li>Error 404 = trang không tìm thấy</li>
+                <li>Thiết kế: thông báo rõ + xin lỗi + gợi ý quay lại trang chủ</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHỦ ĐỀ 12 -->
+        <article class="card" id="topic-12">
+          <h3>📊 CHỦ ĐỀ 12: 10 NGUYÊN TẮC HEURISTIC CỦA NIELSEN</h3>
+          <p><strong>📝 Câu liên quan:</strong> 3, 18, 143</p>
+          
+          <h4 style="border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 20px;">📖 10 Nguyên tắc (cần thuộc)</h4>
+
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nguyên tắc</th>
+                <th>Giải thích</th>
+                <th>Ví dụ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong>Visibility of System Status</strong></td>
+                <td>Luôn thông báo trạng thái</td>
+                <td>Progress bar, Spinner, thông báo</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong>Match System & Real World</strong></td>
+                <td>Dùng ngôn ngữ quen thuộc</td>
+                <td>Icon giỏ hàng 🛒</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><strong>User Control & Freedom</strong></td>
+                <td>Undo/Redo, thoát dễ dàng</td>
+                <td>Nút Hoàn tác, nút X</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><strong>Consistency & Standards</strong></td>
+                <td>Nhất quán nội bộ + tuân chuẩn</td>
+                <td>Icon 🔍 luôn là tìm kiếm</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><strong>Error Prevention</strong></td>
+                <td>Ngăn lỗi trước khi xảy ra</td>
+                <td>Confirm dialog trước khi xóa</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><strong>Recognition over Recall</strong></td>
+                <td>Gợi nhớ thay vì bắt nhớ</td>
+                <td>Menu dropdown thay vì gõ lệnh</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><strong>Flexibility & Efficiency</strong></td>
+                <td>Phím tắt cho user nâng cao</td>
+                <td>Ctrl+S, Ctrl+Z</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td><strong>Aesthetic & Minimalist</strong></td>
+                <td>Chỉ hiện thông tin cần thiết</td>
+                <td>Loại bỏ clutter</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><strong>Help Users Recognize Errors</strong></td>
+                <td>Thông báo lỗi dễ hiểu + gợi ý sửa</td>
+                <td>"Email không hợp lệ, vui lòng thêm @"</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td><strong>Help & Documentation</strong></td>
+                <td>Cung cấp tài liệu hỗ trợ</td>
+                <td>FAQ, Help center</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="alert alert-tip" style="margin-top: 20px;">
+            <div class="alert-title"><i class="fa-solid fa-lightbulb"></i> 💡 Mẹo nhớ 10 nguyên tắc:</div>
+            <div class="alert-content">
+              "<strong>V</strong>iệt <strong>M</strong>ình <strong>U</strong>ống <strong>C</strong>à phê <strong>E</strong>spresso <strong>R</strong>ồi <strong>F</strong>eel <strong>A</strong>mazing <strong>H</strong>ơi <strong>H</strong>igh"<br>
+              = Visibility, Match, User control, Consistency, Error prevention, Recognition, Flexibility, Aesthetic, Help recognize errors, Help & documentation
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <hr>
+
+      <!-- Section: Chiến lược làm bài trắc nghiệm -->
+      <section id="strategy">
+        <h2><i class="fa-solid fa-compass"></i> 🧠 CHIẾN LƯỢC LÀM BÀI TRẮC NGHIỆM</h2>
+        
+        <div class="card" style="margin-top: 20px;">
+          <h3>✨ 5 Mẹo vàng khi làm bài</h3>
+          
+          <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <h5 style="color: var(--danger-text);"><i class="fa-solid fa-ban"></i> 1. Loại trừ đáp án "kỹ thuật"</h5>
+              <p>Đây là môn <strong>THIẾT KẾ</strong>, nên đáp án đúng luôn liên quan đến <strong>người dùng, trải nghiệm, trực quan</strong>. Loại ngay đáp án nói về:</p>
+              <ul>
+                <li>Code, server, database, backend</li>
+                <li>Bảo mật, virus, mã lỗi kỹ thuật</li>
+                <li>Tốc độ internet, phần cứng</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 style="color: var(--warning-text);"><i class="fa-solid fa-circle-minus"></i> 2. Loại trừ đáp án "cực đoan"</h5>
+              <p>Đáp án có từ "<strong>chỉ</strong>", "<strong>luôn luôn</strong>", "<strong>không bao giờ</strong>", "<strong>bắt buộc</strong>", "<strong>toàn bộ</strong>" → thường SAI.</p>
+            </div>
+
+            <div>
+              <h5 style="color: var(--success-text);"><i class="fa-solid fa-circle-check"></i> 3. Chọn đáp án "cân bằng, hợp lý"</h5>
+              <p>Đáp án nào <strong>nghe tự nhiên, có cả giải thích lẫn ví dụ</strong> → thường ĐÚNG.</p>
+            </div>
+
+            <div>
+              <h5><i class="fa-solid fa-magnifying-glass"></i> 4. Tìm từ khóa trong câu hỏi</h5>
+              <ul>
+                <li>"Chức năng chính" → tập trung vào MỤC ĐÍCH CỐT LÕI</li>
+                <li>"KHÔNG nên" / "KHÔNG phải" → đọc kỹ, tìm đáp án NGƯỢC</li>
+                <li>"Tối ưu nhất" → tìm best practice</li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 style="color: var(--primary);"><i class="fa-solid fa-marker"></i> 5. Nhóm đáp án B</h5>
+              <p>Nhiều câu trong đề này có đáp án B. Nếu không chắc chắn, <strong>B là đáp án phổ biến nhất</strong> trong bộ đề này (nhưng đừng mù quáng chọn B!).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Kế hoạch ôn tập 4 ngày -->
+      <section id="study-plan">
+        <h2><i class="fa-solid fa-calendar-days"></i> 📅 KẾ HOẠCH ÔN TẬP 4 NGÀY</h2>
+        
+        <table class="content-table" style="margin-top: 20px;">
+          <thead>
+            <tr>
+              <th style="width: 150px;">Ngày</th>
+              <th>Nội dung</th>
+              <th>Cách ôn</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ngày 1</strong> (5/6)</td>
+              <td>Đọc toàn bộ tài liệu này + bảng đáp án</td>
+              <td>Đọc hiểu, highlight kiến thức mới</td>
+            </tr>
+            <tr>
+              <td><strong>Ngày 2</strong> (6/6)</td>
+              <td>Chủ đề 1-6 (Định luật, Typography, Màu sắc, Layout, Components, Figma)</td>
+              <td>Tự kiểm tra: che đáp án → trả lời → kiểm tra</td>
+            </tr>
+            <tr>
+              <td><strong>Ngày 3</strong> (7/6)</td>
+              <td>Chủ đề 7-12 (UX Research, Accessibility, Mobile, File, Quy trình, Heuristics)</td>
+              <td>Làm lại toàn bộ 200 câu, đánh dấu câu sai</td>
+            </tr>
+            <tr>
+              <td><strong>Ngày 4</strong> (8/6)</td>
+              <td>Ôn lại CÁC CÂU SAI + đọc mẹo nhớ + chiến lược làm bài</td>
+              <td>Nghỉ ngơi sớm, ngủ đủ giấc</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="alert alert-caution" style="margin-top: 24px;">
+          <div class="alert-title"><i class="fa-solid fa-circle-exclamation"></i> Đêm trước thi:</div>
+          <div class="alert-content">KHÔNG thức khuya ôn thêm. Ngủ đủ 7-8 tiếng để não xử lý tốt nhất khi làm bài!</div>
+        </div>
+      </section>
+
+      <!-- Section: Thống kê bộ đề -->
+      <section id="statistics">
+        <h2><i class="fa-solid fa-chart-pie"></i> 📊 THỐNG KÊ BỘ ĐỀ</h2>
+        
+        <table class="content-table" style="margin-top: 20px;">
+          <thead>
+            <tr>
+              <th>Chủ đề</th>
+              <th style="width: 100px; text-align: center;">Số câu</th>
+              <th style="width: 100px; text-align: center;">Tỷ lệ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Định luật & Nguyên tắc (UX Laws)</td>
+              <td style="text-align: center;">18</td>
+              <td style="text-align: center;">9%</td>
+            </tr>
+            <tr>
+              <td>Typography</td>
+              <td style="text-align: center;">9</td>
+              <td style="text-align: center;">4.5%</td>
+            </tr>
+            <tr>
+              <td>Màu sắc & Visual Design</td>
+              <td style="text-align: center;">14</td>
+              <td style="text-align: center;">7%</td>
+            </tr>
+            <tr>
+              <td>Layout & Patterns</td>
+              <td style="text-align: center;">14</td>
+              <td style="text-align: center;">7%</td>
+            </tr>
+            <tr>
+              <td>UI Components</td>
+              <td style="text-align: center;">38</td>
+              <td style="text-align: center;"><strong>19%</strong> ⭐</td>
+            </tr>
+            <tr>
+              <td>Công cụ Figma</td>
+              <td style="text-align: center;">10</td>
+              <td style="text-align: center;">5%</td>
+            </tr>
+            <tr>
+              <td>UX Research & Methods</td>
+              <td style="text-align: center;">33</td>
+              <td style="text-align: center;"><strong>16.5%</strong> ⭐</td>
+            </tr>
+            <tr>
+              <td>Accessibility</td>
+              <td style="text-align: center;">7</td>
+              <td style="text-align: center;">3.5%</td>
+            </tr>
+            <tr>
+              <td>Mobile Design</td>
+              <td style="text-align: center;">7</td>
+              <td style="text-align: center;">3.5%</td>
+            </tr>
+            <tr>
+              <td>Định dạng file & Kỹ thuật</td>
+              <td style="text-align: center;">6</td>
+              <td style="text-align: center;">3%</td>
+            </tr>
+            <tr>
+              <td>Quy trình & Khái niệm cốt lõi</td>
+              <td style="text-align: center;">28</td>
+              <td style="text-align: center;"><strong>14%</strong> ⭐</td>
+            </tr>
+            <tr>
+              <td>10 Heuristics Nielsen</td>
+              <td style="text-align: center;">3</td>
+              <td style="text-align: center;">1.5%</td>
+            </tr>
+            <tr>
+              <td>Câu trùng lặp/tương tự</td>
+              <td style="text-align: center;">~13</td>
+              <td style="text-align: center;">6.5%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="alert alert-important" style="margin-top: 24px;">
+          <div class="alert-title"><i class="fa-solid fa-circle-exclamation"></i> 3 chủ đề chiếm nhiều câu nhất:</div>
+          <div class="alert-content">UI Components (19%), UX Research (16.5%), Quy trình thiết kế (14%). Tập trung ôn 3 chủ đề này trước!</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 48px; padding: 24px; background: rgba(99, 102, 241, 0.05); border-radius: 12px; border: 1px solid var(--border-color);">
+          <h3 style="margin-top: 0; color: var(--primary);">Chúc bạn thi tốt! 🎓💪</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0; margin-top: 8px;">
+            *Tài liệu được tổng hợp từ Bộ đề ôn tập 200 câu - Thiết kế giao diện người dùng - PTIT*
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Floating back-to-top button -->
+  <button class="btn-float" id="back-to-top" title="Cuộn lên đầu trang">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // --- Data of quick answers 101-200 (added dynamically to optimize HTML structure or directly coded) ---
+    // The table for 101-200 is already coded in HTML with complete data to ensure 100% preservation.
+    
+    // --- LocalStorage State Management ---
+    const APP_STATE = {
+      learnedQuestions: [], // IDs of learned questions
+      shownAnswers: [], // IDs of explicitly shown answers
+      theme: 'dark', // 'dark' or 'light'
+      showUnlearnedOnly: false,
+      keywordsBlurred: false
+    };
+
+    // Load State
+    function loadState() {
+      const savedLearned = localStorage.getItem('ux_learned_questions');
+      if (savedLearned) {
+        APP_STATE.learnedQuestions = JSON.parse(savedLearned);
+      }
+      
+      const savedTheme = localStorage.getItem('ux_theme');
+      if (savedTheme) {
+        APP_STATE.theme = savedTheme;
+      } else {
+        // Auto system theme
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        APP_STATE.theme = prefersDark ? 'dark' : 'light';
+      }
+    }
+
+    // Save State
+    function saveState() {
+      localStorage.setItem('ux_learned_questions', JSON.stringify(APP_STATE.learnedQuestions));
+      localStorage.setItem('ux_theme', APP_STATE.theme);
+    }
+
+    // Apply Theme
+    function applyTheme() {
+      document.documentElement.setAttribute('data-theme', APP_STATE.theme);
+      
+      const lightIcon = document.getElementById('theme-icon-light');
+      const darkIcon = document.getElementById('theme-icon-dark');
+      const mobileThemeBtn = document.getElementById('mobile-theme-toggle').querySelector('i');
+      
+      if (APP_STATE.theme === 'light') {
+        if (lightIcon) lightIcon.style.display = 'block';
+        if (darkIcon) darkIcon.style.display = 'none';
+        if (mobileThemeBtn) {
+          mobileThemeBtn.className = 'fa-solid fa-sun';
+        }
+      } else {
+        if (lightIcon) lightIcon.style.display = 'none';
+        if (darkIcon) darkIcon.style.display = 'block';
+        if (mobileThemeBtn) {
+          mobileThemeBtn.className = 'fa-solid fa-moon';
+        }
+      }
+    }
+
+    // Update Progress Bar
+    function updateProgress() {
+      const total = 200;
+      const count = APP_STATE.learnedQuestions.length;
+      const percent = Math.round((count / total) * 100);
+      
+      const fillBar = document.getElementById('progress-bar');
+      const percentText = document.getElementById('progress-percent');
+      const countText = document.getElementById('progress-count');
+      
+      if (fillBar) fillBar.style.width = `${percent}%`;
+      if (percentText) percentText.innerText = `${percent}%`;
+      if (countText) countText.innerText = count;
+      
+      // Update grid button states in case they exist
+      document.querySelectorAll('.q-checkbox').forEach(chk => {
+        const id = parseInt(chk.dataset.id);
+        const row = chk.closest('tr');
+        if (APP_STATE.learnedQuestions.includes(id)) {
+          chk.checked = true;
+          if (row) row.classList.add('learned');
+        } else {
+          chk.checked = false;
+          if (row) row.classList.remove('learned');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      applyTheme();
+      updateProgress();
+      
+      // Toggle theme event
+      const toggleBtn = document.getElementById('theme-toggle');
+      const mobileToggleBtn = document.getElementById('mobile-theme-toggle');
+      
+      const handleThemeToggle = () => {
+        APP_STATE.theme = APP_STATE.theme === 'dark' ? 'light' : 'dark';
+        saveState();
+        applyTheme();
+      };
+      
+      if (toggleBtn) toggleBtn.addEventListener('click', handleThemeToggle);
+      if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', handleThemeToggle);
+
+      // Checkbox event logic
+      document.querySelectorAll('.q-checkbox').forEach(chk => {
+        chk.addEventListener('change', (e) => {
+          const id = parseInt(e.target.dataset.id);
+          const row = e.target.closest('tr');
+          
+          if (e.target.checked) {
+            if (!APP_STATE.learnedQuestions.includes(id)) {
+              APP_STATE.learnedQuestions.push(id);
+            }
+            if (row) row.classList.add('learned');
+          } else {
+            const index = APP_STATE.learnedQuestions.indexOf(id);
+            if (index > -1) {
+              APP_STATE.learnedQuestions.splice(index, 1);
+            }
+            if (row) row.classList.remove('learned');
+          }
+          saveState();
+          updateProgress();
+          
+          if (APP_STATE.showUnlearnedOnly) {
+            filterAnswersTable();
+          }
+        });
+      });
+
+      // Individual Answer cell Click (Show/Hide)
+      document.querySelectorAll('.badge-ans').forEach(badge => {
+        badge.addEventListener('click', () => {
+          badge.classList.toggle('shown');
+        });
+      });
+
+      // Section actions (Show all / Hide all)
+      document.querySelectorAll('.btn-show-all-section').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const start = parseInt(btn.dataset.start);
+          const end = parseInt(btn.dataset.end);
+          for (let i = start; i <= end; i++) {
+            const badge = document.querySelector(`.badge-ans[data-id="${i}"]`);
+            if (badge) badge.classList.add('shown');
+          }
+        });
+      });
+
+      document.querySelectorAll('.btn-hide-all-section').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const start = parseInt(btn.dataset.start);
+          const end = parseInt(btn.dataset.end);
+          for (let i = start; i <= end; i++) {
+            const badge = document.querySelector(`.badge-ans[data-id="${i}"]`);
+            if (badge) badge.classList.remove('shown');
+          }
+        });
+      });
+
+      // Add visual image cells and Google Image search links
+      const addVisualImageCells = () => {
+        document.querySelectorAll('.table-container table').forEach(table => {
+          const headerRow = table.querySelector('thead tr');
+          if (headerRow && !headerRow.querySelector('.col-image')) {
+            const th = document.createElement('th');
+            th.className = 'col-image';
+            th.textContent = 'Hình ảnh';
+            headerRow.appendChild(th);
+          }
+
+          table.querySelectorAll('tbody tr').forEach(row => {
+            if (row.querySelector('.col-image')) return;
+
+            const keywordCell = row.querySelector('.col-keyword');
+            let keywordText = keywordCell ? keywordCell.innerText.split('=')[0].trim() : '';
+            if (!keywordText) {
+              keywordText = row.querySelector('.col-num')?.innerText || 'UI';
+            }
+
+            const searchQuery = encodeURIComponent(keywordText);
+            const placeholderUrl = `https://via.placeholder.com/120x70/374151/ffffff?text=${searchQuery}`;
+            const td = document.createElement('td');
+            td.className = 'col-image';
+
+            const link = document.createElement('a');
+            link.className = 'visual-link';
+            link.href = `https://www.google.com/search?tbm=isch&q=${searchQuery}`;
+            link.target = '_blank';
+            link.rel = 'noreferrer noopener';
+
+            const img = document.createElement('img');
+            img.className = 'visual-thumb';
+            img.src = placeholderUrl;
+            img.alt = keywordText;
+
+            link.appendChild(img);
+            td.appendChild(link);
+            row.appendChild(td);
+          });
+        });
+      };
+      addVisualImageCells();
+
+      // Search and Filter functionality
+      const searchInput = document.getElementById('answer-search');
+      const btnUnlearned = document.getElementById('btn-show-unlearned');
+
+      function filterAnswersTable() {
+        const query = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+        
+        document.querySelectorAll('tbody tr').forEach(row => {
+          const qId = parseInt(row.id.replace('qrow-', ''));
+          const keyword = row.querySelector('.col-keyword').innerText.toLowerCase();
+          const isLearned = APP_STATE.learnedQuestions.includes(qId);
+          
+          const matchesSearch = query === '' || 
+                                row.querySelector('.col-num').innerText.includes(query) || 
+                                keyword.includes(query);
+                                
+          const matchesFilter = !APP_STATE.showUnlearnedOnly || !isLearned;
+          
+          if (matchesSearch && matchesFilter) {
+            row.style.display = '';
+            visibleCount++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        // Hide empty sections (optional)
+        document.querySelectorAll('.table-container').forEach(container => {
+          const rows = container.querySelectorAll('tbody tr');
+          let hasVisible = false;
+          rows.forEach(r => {
+            if (r.style.display !== 'none') hasVisible = true;
+          });
+          container.style.display = hasVisible ? '' : 'none';
+        });
+
+        document.getElementById('search-result-count').innerText = `Hiển thị ${visibleCount}/200 câu`;
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', filterAnswersTable);
+      }
+
+      if (btnUnlearned) {
+        btnUnlearned.addEventListener('click', () => {
+          APP_STATE.showUnlearnedOnly = !APP_STATE.showUnlearnedOnly;
+          btnUnlearned.classList.toggle('btn-success', APP_STATE.showUnlearnedOnly);
+          btnUnlearned.querySelector('span').innerText = APP_STATE.showUnlearnedOnly ? 'Hiện tất cả' : 'Chưa thuộc';
+          filterAnswersTable();
+        });
+      }
+
+      // Sidebar Active highlight on Scroll (Scrollspy)
+      const sections = document.querySelectorAll('main > section, main article');
+      const menuItems = document.querySelectorAll('.sidebar-menu .menu-item');
+      
+      const handleScrollSpy = () => {
+        let currentSec = 'quick-answers';
+        const scrollPosition = window.scrollY + 100;
+        
+        sections.forEach(sec => {
+          if (sec.offsetTop <= scrollPosition) {
+            currentSec = sec.getAttribute('id') || currentSec;
+          }
+        });
+        
+        menuItems.forEach(item => {
+          item.classList.remove('active');
+          if (item.getAttribute('data-sec') === currentSec) {
+            item.classList.add('active');
+          }
+        });
+
+        // Float Button visibility
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (window.scrollY > 400) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      };
+
+      window.addEventListener('scroll', handleScrollSpy);
+
+      // Back to Top Button
+      const backToTopBtn = document.getElementById('back-to-top');
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // Mobile Sidebar toggle
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+
+      const toggleSidebar = () => {
+        sidebar.classList.toggle('open');
+        overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+      };
+
+      if (mobileBtn) mobileBtn.addEventListener('click', toggleSidebar);
+      if (overlay) overlay.addEventListener('click', toggleSidebar);
+      
+      // Close sidebar when clicking menu items on mobile
+      document.querySelectorAll('.sidebar-menu .menu-item').forEach(item => {
+        item.addEventListener('click', () => {
+          if (window.innerWidth <= 1024) {
+            toggleSidebar();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
